@@ -2,34 +2,36 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package javaapplication20;
+package GUI;
 
 /**
  *
  * @author User
  */
-public class BusquedaResGUI extends javax.swing.JFrame {
+public class HistorialGUI extends javax.swing.JFrame {
 
     public static GUI GUIinicial;
     public static BusquedaGUI busquedaGUI;
+    public static BusquedaResGUI busquedaresGUI;
     public static CheckInGUI checkinGUI;
     public static HistorialGUI historialGUI;
+    public static CheckOutGUI checkoutGUI;
     /**
      * 
      * Creates new form GUI
      */
     
-    public BusquedaResGUI(HistorialGUI historialGUI) {
+    public HistorialGUI(CheckOutGUI checkoutGUI) {
         initComponents();
-        this.historialGUI = historialGUI;
-        historialGUI.setVisible(false);
+        this.checkoutGUI = checkoutGUI;
+        checkoutGUI.setVisible(false);
         this.setVisible(true);
         this.setSize(750,500);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
     }
     
-    public BusquedaResGUI(BusquedaGUI busquedaGUI) {
+    public HistorialGUI(BusquedaGUI busquedaGUI) {
         initComponents();
         this.busquedaGUI = busquedaGUI;
         busquedaGUI.setVisible(false);
@@ -38,18 +40,7 @@ public class BusquedaResGUI extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
     }
-    
-    public BusquedaResGUI(CheckInGUI checkinGUI) {
-        initComponents();
-        this.checkinGUI = checkinGUI;
-        checkinGUI.setVisible(false);
-        this.setVisible(true);
-        this.setSize(750,500);
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-    }
-    
-    public BusquedaResGUI(GUI GUIinicial) {
+    public HistorialGUI(GUI GUIinicial) {
         initComponents();
         this.GUIinicial = GUIinicial;
         GUIinicial.setVisible(false);
@@ -59,7 +50,27 @@ public class BusquedaResGUI extends javax.swing.JFrame {
         this.setResizable(false);
     }
     
-    public BusquedaResGUI() {
+    public HistorialGUI(BusquedaResGUI busquedaresGUI) {
+        initComponents();
+        this.busquedaresGUI = busquedaresGUI;
+        busquedaresGUI.setVisible(false);
+        this.setVisible(true);
+        this.setSize(750,500);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+    }
+    
+    public HistorialGUI(CheckInGUI checkinGUI) {
+        initComponents();
+        this.checkinGUI = checkinGUI;
+        checkinGUI.setVisible(false);
+        this.setVisible(true);
+        this.setSize(750,500);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+    }
+    
+    public HistorialGUI() {
         initComponents();
         this.setVisible(true);
         this.setSize(750,500);
@@ -86,6 +97,7 @@ public class BusquedaResGUI extends javax.swing.JFrame {
         Busquedares = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        checkout = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -178,6 +190,17 @@ public class BusquedaResGUI extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Menu");
 
+        checkout.setBackground(new java.awt.Color(0, 51, 102));
+        checkout.setFont(new java.awt.Font("Century Gothic", 2, 16)); // NOI18N
+        checkout.setForeground(new java.awt.Color(255, 255, 255));
+        checkout.setText("Check-Out");
+        checkout.setBorder(null);
+        checkout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkoutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -193,6 +216,7 @@ public class BusquedaResGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(checkout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,7 +235,9 @@ public class BusquedaResGUI extends javax.swing.JFrame {
                 .addComponent(Busquedares, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Historial, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(checkout, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 470));
@@ -272,9 +298,9 @@ public class BusquedaResGUI extends javax.swing.JFrame {
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, -20, 650, 100));
 
         jLabel1.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 14)); // NOI18N
-        jLabel1.setText("Cedula:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, -1, -1));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 120, -1));
+        jLabel1.setText("Numero de Habitacion:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, -1, -1));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 150, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -289,7 +315,7 @@ public class BusquedaResGUI extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, -1, 110));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, -1, 110));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -300,7 +326,7 @@ public class BusquedaResGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_LobbyActionPerformed
 
     private void HistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialActionPerformed
-        HistorialGUI historialGUI = new HistorialGUI(this);
+        // TODO add your handling code here:
     }//GEN-LAST:event_HistorialActionPerformed
 
     private void checkinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkinActionPerformed
@@ -308,12 +334,16 @@ public class BusquedaResGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_checkinActionPerformed
 
     private void BusquedaresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BusquedaresActionPerformed
-
+        BusquedaResGUI busquedaresGUI = new BusquedaResGUI(this);
     }//GEN-LAST:event_BusquedaresActionPerformed
 
     private void BusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BusquedaActionPerformed
         BusquedaGUI busquedaGUI = new BusquedaGUI(this);
     }//GEN-LAST:event_BusquedaActionPerformed
+
+    private void checkoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkoutActionPerformed
+        CheckOutGUI checkoutGUI = new CheckOutGUI(this);
+    }//GEN-LAST:event_checkoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -332,13 +362,13 @@ public class BusquedaResGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BusquedaResGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HistorialGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BusquedaResGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HistorialGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BusquedaResGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HistorialGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BusquedaResGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HistorialGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -352,7 +382,7 @@ public class BusquedaResGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BusquedaResGUI().setVisible(true);
+                new HistorialGUI().setVisible(true);
             }
         });
     }
@@ -363,6 +393,7 @@ public class BusquedaResGUI extends javax.swing.JFrame {
     private javax.swing.JButton Historial;
     private javax.swing.JButton Lobby;
     private javax.swing.JButton checkin;
+    private javax.swing.JButton checkout;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
