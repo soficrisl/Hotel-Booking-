@@ -2,45 +2,45 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package javaapplication20;
+package GUI;
 
 /**
  *
  * @author User
  */
-public class HistorialGUI extends javax.swing.JFrame {
+public class CheckInGUI extends javax.swing.JFrame {
 
-    public static GUI GUIinicial;
+    public static GUI interfazcheckin;
     public static BusquedaGUI busquedaGUI;
     public static BusquedaResGUI busquedaresGUI;
-    public static CheckInGUI checkinGUI;
     public static HistorialGUI historialGUI;
+    public static CheckOutGUI checkoutGUI;
     /**
      * 
      * Creates new form GUI
      */
     
-    
-    public HistorialGUI(BusquedaGUI busquedaGUI) {
+    public CheckInGUI(HistorialGUI historialGUI) {
         initComponents();
-        this.busquedaGUI = busquedaGUI;
-        busquedaGUI.setVisible(false);
-        this.setVisible(true);
-        this.setSize(750,500);
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-    }
-    public HistorialGUI(GUI GUIinicial) {
-        initComponents();
-        this.GUIinicial = GUIinicial;
-        GUIinicial.setVisible(false);
+        this.historialGUI = historialGUI;
+        historialGUI.setVisible(false);
         this.setVisible(true);
         this.setSize(750,500);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
     }
     
-    public HistorialGUI(BusquedaResGUI busquedaresGUI) {
+    public CheckInGUI(CheckOutGUI checkoutGUI) {
+        initComponents();
+        this.checkoutGUI = checkoutGUI;
+        checkoutGUI.setVisible(false);
+        this.setVisible(true);
+        this.setSize(750,500);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+    }
+    
+    public CheckInGUI(BusquedaResGUI busquedaresGUI) {
         initComponents();
         this.busquedaresGUI = busquedaresGUI;
         busquedaresGUI.setVisible(false);
@@ -49,18 +49,28 @@ public class HistorialGUI extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
     }
-    
-    public HistorialGUI(CheckInGUI checkinGUI) {
+    public CheckInGUI(BusquedaGUI busquedaGUI) {
         initComponents();
-        this.checkinGUI = checkinGUI;
-        checkinGUI.setVisible(false);
+        this.busquedaGUI = busquedaGUI;
+        busquedaGUI.setVisible(false);
         this.setVisible(true);
         this.setSize(750,500);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
     }
     
-    public HistorialGUI() {
+    public CheckInGUI(GUI interfazcheckin) {
+        initComponents();
+        this.interfazcheckin = interfazcheckin;
+        interfazcheckin.setVisible(false);
+        this.setVisible(true);
+     
+        this.setSize(750,500);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+    }
+    
+    public CheckInGUI() {
         initComponents();
         this.setVisible(true);
         this.setSize(750,500);
@@ -87,12 +97,15 @@ public class HistorialGUI extends javax.swing.JFrame {
         Busquedares = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        checkout = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -179,6 +192,17 @@ public class HistorialGUI extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Menu");
 
+        checkout.setBackground(new java.awt.Color(0, 51, 102));
+        checkout.setFont(new java.awt.Font("Century Gothic", 2, 16)); // NOI18N
+        checkout.setForeground(new java.awt.Color(255, 255, 255));
+        checkout.setText("Check-Out");
+        checkout.setBorder(null);
+        checkout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkoutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -194,6 +218,7 @@ public class HistorialGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(checkout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,7 +237,9 @@ public class HistorialGUI extends javax.swing.JFrame {
                 .addComponent(Busquedares, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Historial, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(checkout, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 470));
@@ -273,9 +300,14 @@ public class HistorialGUI extends javax.swing.JFrame {
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, -20, 650, 100));
 
         jLabel1.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 14)); // NOI18N
-        jLabel1.setText("Numero de Habitacion:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, -1, -1));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 150, -1));
+        jLabel1.setText("Apellido:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 120, -1));
+
+        jLabel4.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 14)); // NOI18N
+        jLabel4.setText("Nombre:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 120, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -290,7 +322,7 @@ public class HistorialGUI extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, -1, 110));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, -1, 110));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -301,20 +333,24 @@ public class HistorialGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_LobbyActionPerformed
 
     private void HistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialActionPerformed
-        // TODO add your handling code here:
+        HistorialGUI historialGUI = new HistorialGUI();
     }//GEN-LAST:event_HistorialActionPerformed
 
     private void checkinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkinActionPerformed
-        CheckInGUI interfazcheckIn = new CheckInGUI(this);
+        
     }//GEN-LAST:event_checkinActionPerformed
 
     private void BusquedaresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BusquedaresActionPerformed
-        BusquedaResGUI busquedaresGUI = new BusquedaResGUI(this);
+        BusquedaResGUI busquedaresGUI = new BusquedaResGUI(this); 
     }//GEN-LAST:event_BusquedaresActionPerformed
 
     private void BusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BusquedaActionPerformed
         BusquedaGUI busquedaGUI = new BusquedaGUI(this);
     }//GEN-LAST:event_BusquedaActionPerformed
+
+    private void checkoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkoutActionPerformed
+        CheckOutGUI checkoutGUI = new CheckOutGUI(this);
+    }//GEN-LAST:event_checkoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -333,27 +369,21 @@ public class HistorialGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HistorialGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckInGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HistorialGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckInGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HistorialGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckInGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HistorialGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckInGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HistorialGUI().setVisible(true);
+                new CheckInGUI(interfazcheckin).setVisible(true);
             }
         });
     }
@@ -364,9 +394,11 @@ public class HistorialGUI extends javax.swing.JFrame {
     private javax.swing.JButton Historial;
     private javax.swing.JButton Lobby;
     private javax.swing.JButton checkin;
+    private javax.swing.JButton checkout;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -377,6 +409,7 @@ public class HistorialGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

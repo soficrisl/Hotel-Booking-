@@ -2,30 +2,47 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package javaapplication20;
+package GUI;
 
 /**
  *
  * @author User
  */
-public class GUI extends javax.swing.JFrame {
+public class BusquedaGUI extends javax.swing.JFrame {
 
-    public static CheckInGUI GUIinicial;
+    public static GUI GUIinicial;
     public static BusquedaGUI busquedaGUI;
     public static BusquedaResGUI busquedaresGUI;
+    public static CheckInGUI checkinGUI;
     public static HistorialGUI historialGUI;
+    public static CheckOutGUI checkoutGUI;
     /**
+     * 
      * Creates new form GUI
      */
-    public GUI() {
+    
+    
+    public BusquedaGUI(CheckInGUI checkinGUI) {
         initComponents();
+        this.checkinGUI = checkinGUI;
+        checkinGUI.setVisible(false);
         this.setVisible(true);
         this.setSize(750,500);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
     }
     
-    public GUI(CheckInGUI GUIinicial) {
+    public BusquedaGUI(CheckOutGUI checkoutGUI){
+       initComponents();
+        this.checkoutGUI = checkoutGUI;
+        checkoutGUI.setVisible(false);
+        this.setVisible(true);
+        this.setSize(750,500);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false); 
+    }
+    
+    public BusquedaGUI(GUI GUIinicial) {
         initComponents();
         this.GUIinicial = GUIinicial;
         GUIinicial.setVisible(false);
@@ -35,17 +52,7 @@ public class GUI extends javax.swing.JFrame {
         this.setResizable(false);
     }
     
-    public GUI(BusquedaGUI busquedaGUI) {
-        initComponents();
-        this.busquedaGUI = busquedaGUI;
-        busquedaGUI.setVisible(false);
-        this.setVisible(true);
-        this.setSize(750,500);
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-    }
-    
-    public GUI(BusquedaResGUI busquedaresGUI) {
+    public BusquedaGUI(BusquedaResGUI busquedaresGUI) {
         initComponents();
         this.busquedaresGUI = busquedaresGUI;
         busquedaresGUI.setVisible(false);
@@ -55,7 +62,7 @@ public class GUI extends javax.swing.JFrame {
         this.setResizable(false);
     }
     
-    public GUI(HistorialGUI historialGUI) {
+    public BusquedaGUI(HistorialGUI historialGUI) {
         initComponents();
         this.historialGUI = historialGUI;
         historialGUI.setVisible(false);
@@ -65,6 +72,14 @@ public class GUI extends javax.swing.JFrame {
         this.setResizable(false);
     }
     
+    public BusquedaGUI() {
+        initComponents();
+        this.setVisible(true);
+        this.setSize(750,500);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,16 +97,20 @@ public class GUI extends javax.swing.JFrame {
         Busqueda = new javax.swing.JButton();
         Historial = new javax.swing.JButton();
         Busquedares = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        checkout = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        bienvenidos = new javax.swing.JLabel();
-        HBmain = new javax.swing.JLabel();
-        mainimage = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -169,11 +188,22 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/unnamed (3) (3).jpg"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/unnamed (3) (3).jpg"))); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Menu");
+        jLabel7.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Menu");
+
+        checkout.setBackground(new java.awt.Color(0, 51, 102));
+        checkout.setFont(new java.awt.Font("Century Gothic", 2, 16)); // NOI18N
+        checkout.setForeground(new java.awt.Color(255, 255, 255));
+        checkout.setText("Check-out");
+        checkout.setBorder(null);
+        checkout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkoutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -186,18 +216,19 @@ public class GUI extends javax.swing.JFrame {
             .addComponent(Historial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(jLabel7)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(checkout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Lobby, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -208,7 +239,9 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(Busquedares, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Historial, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(checkout, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 470));
@@ -268,29 +301,41 @@ public class GUI extends javax.swing.JFrame {
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, -20, 650, 100));
 
-        bienvenidos.setFont(new java.awt.Font("Segoe UI Emoji", 2, 12)); // NOI18N
-        bienvenidos.setText("Bienvenidos a...");
-        getContentPane().add(bienvenidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 14)); // NOI18N
+        jLabel1.setText("Apellido:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, -1, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 120, -1));
 
-        HBmain.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        HBmain.setText("Hotel Booking");
-        getContentPane().add(HBmain, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, -1, -1));
+        jLabel4.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 14)); // NOI18N
+        jLabel4.setText("Nombre:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, -1, -1));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 120, -1));
 
-        mainimage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Captura de pantalla 2024-03-07 222740 (4).jpg"))); // NOI18N
-        getContentPane().add(mainimage, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 610, 400));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, -1, 110));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void LobbyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LobbyActionPerformed
-        mainimage.setVisible(true);
-        HBmain.setVisible(true);
-        bienvenidos.setVisible(true);
+        GUI GUIinicial = new GUI(this);
         
     }//GEN-LAST:event_LobbyActionPerformed
 
     private void HistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialActionPerformed
-        HistorialGUI historialGUI = new HistorialGUI(this);
+       HistorialGUI historialGUI = new HistorialGUI(this);
     }//GEN-LAST:event_HistorialActionPerformed
 
     private void checkinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkinActionPerformed
@@ -302,8 +347,12 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_BusquedaresActionPerformed
 
     private void BusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BusquedaActionPerformed
-        BusquedaGUI busquedaGUI = new BusquedaGUI(this);
+        BusquedaGUI busquedaGUI = new BusquedaGUI();
     }//GEN-LAST:event_BusquedaActionPerformed
+
+    private void checkoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkoutActionPerformed
+        CheckOutGUI checkoutGUI = new CheckOutGUI(this);
+    }//GEN-LAST:event_checkoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -322,20 +371,23 @@ public class GUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BusquedaGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BusquedaGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BusquedaGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BusquedaGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GUI().setVisible(true);
+                new BusquedaGUI().setVisible(true);
             }
         });
     }
@@ -343,21 +395,25 @@ public class GUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Busqueda;
     private javax.swing.JButton Busquedares;
-    private javax.swing.JLabel HBmain;
     private javax.swing.JButton Historial;
     private javax.swing.JButton Lobby;
-    private javax.swing.JLabel bienvenidos;
     private javax.swing.JButton checkin;
+    private javax.swing.JButton checkout;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JLabel mainimage;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
