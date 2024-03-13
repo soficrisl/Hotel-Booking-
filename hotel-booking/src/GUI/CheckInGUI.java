@@ -329,15 +329,14 @@ public class CheckInGUI extends javax.swing.JFrame {
 
     private void LobbyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LobbyActionPerformed
         GUI GUIinicial = new GUI(this);
-        
     }//GEN-LAST:event_LobbyActionPerformed
 
     private void HistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialActionPerformed
-        HistorialGUI historialGUI = new HistorialGUI();
+        HistorialGUI historialGUI = new HistorialGUI(this);
     }//GEN-LAST:event_HistorialActionPerformed
 
     private void checkinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkinActionPerformed
-        
+
     }//GEN-LAST:event_checkinActionPerformed
 
     private void BusquedaresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BusquedaresActionPerformed
