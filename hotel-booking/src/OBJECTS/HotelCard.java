@@ -10,14 +10,14 @@ package OBJECTS;
  */
 public class HotelCard {
     private int numHabitacion;
-    private Boolean entrada;
-    private Boolean salida;
+    private String entrada;
+    private String salida;
     private int estado;
 
-    public HotelCard(int numHabitacion, int estado) {
+    public HotelCard(int numHabitacion, String entrada, String salida, int estado) {
         this.numHabitacion = numHabitacion;
-        this.entrada = false;
-        this.salida = false;
+        this.entrada = entrada;
+        this.salida = salida;
         this.estado = estado;
     }
 
@@ -29,19 +29,19 @@ public class HotelCard {
         this.numHabitacion = numHabitacion;
     }
 
-    public Boolean getEntrada() {
+    public String getEntrada() {
         return entrada;
     }
 
-    public void setEntrada(Boolean entrada) {
+    public void setEntrada(String entrada) {
         this.entrada = entrada;
     }
 
-    public Boolean getSalida() {
+    public String getSalida() {
         return salida;
     }
 
-    public void setSalida(Boolean salida) {
+    public void setSalida(String salida) {
         this.salida = salida;
     }
 

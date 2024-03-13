@@ -17,8 +17,8 @@ public class Room {
     private String tipo;
     private int piso;
 
-    public Room(ListaDoble historial, int numero, String tipo, int piso) {
-        this.historial = historial;
+    public Room(int numero, String tipo, int piso) {
+        this.historial = new ListaDoble();
         this.ocupado = false;
         this.numero = numero;
         this.tipo = tipo;

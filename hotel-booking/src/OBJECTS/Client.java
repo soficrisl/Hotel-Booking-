@@ -11,6 +11,7 @@ import EDD.ListaDoble;
  * @author cristiandresgp
  */
 public class Client {
+    private int cedula;
     private String nombre;
     private String apellido;
     private String email;
@@ -18,13 +19,22 @@ public class Client {
     private String numero;
     private ListaDoble card;
 
-    public Client(String nombre, String apellido, String email, String genero, String numero, ListaDoble card) {
+    public Client(int cedula, String nombre, String apellido, String email, String genero, String numero) {
+        this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.genero = genero;
         this.numero = numero;
         this.card = new ListaDoble();
+    }
+
+    public int getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(int cedula) {
+        this.cedula = cedula;
     }
 
     public String getNombre() {
