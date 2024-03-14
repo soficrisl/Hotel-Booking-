@@ -105,8 +105,8 @@ public class main {
         
         //Leer habitaciones y recorrer para obtener valores
         List listaestados = xlsx.estados;
-        for (int i = 0; i < listahabitaciones.size(); i++) {
-            LinkedList datos = (LinkedList) listahabitaciones.get(i);
+        for (int i = 0; i < listaestados.size(); i++) {
+            LinkedList datos = (LinkedList) listaestados.get(i);
             String num_habest;
             String primer_nombreest;
             String apellidoest;
@@ -153,8 +153,8 @@ public class main {
         
         //Leer historicos y recorrer para obtener valores
         List listahistoricos = xlsx.historicos;
-        for (int i = 0; i < listareservas.size(); i++) {
-            LinkedList datos = (LinkedList) listareservas.get(i);
+        for (int i = 0; i < listahistoricos.size(); i++) {
+            LinkedList datos = (LinkedList) listahistoricos.get(i);
             String cedulahist;
             String primer_nombrehist;
             String segundo_nombrehist;
@@ -173,6 +173,7 @@ public class main {
                     if (j == 1) {
                         String dato = (String) datos.get(j);
                         primer_nombrehist = dato;
+                        
                     }
                     if (j == 2) {
                         String dato = (String) datos.get(j);
@@ -193,6 +194,7 @@ public class main {
                     if (j == 6) {
                         String dato = (String) datos.get(j);
                         num_habhist = dato;
+                       
                     }
                 }
                 // añadirHistorico(cedula, primer_nombre, segundo_nombre)
@@ -200,7 +202,7 @@ public class main {
         }
         
         //Inicializa interfaz
-        GUI interfaz1 = new GUI();
-        interfaz1.setVisible(true);
+        //GUI interfaz1 = new GUI();
+        //interfaz1.setVisible(true);
     }
 }
