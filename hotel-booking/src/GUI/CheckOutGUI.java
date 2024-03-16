@@ -104,10 +104,21 @@ public class CheckOutGUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        apellido = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        apellido1 = new javax.swing.JLabel();
+        nombre1 = new javax.swing.JTextField();
+        apellido2 = new javax.swing.JLabel();
+        numhab1 = new javax.swing.JTextField();
+        cedula = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
+        genero = new javax.swing.JComboBox<>();
+        apellido3 = new javax.swing.JLabel();
+        apellido4 = new javax.swing.JLabel();
+        botonCheckout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -298,15 +309,56 @@ public class CheckOutGUI extends javax.swing.JFrame {
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, -20, 650, 100));
 
-        jLabel1.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 14)); // NOI18N
-        jLabel1.setText("Apellido:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, -1, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 120, -1));
+        apellido.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
+        apellido.setText("Email:");
+        getContentPane().add(apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, 70, -1));
 
-        jLabel4.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
         jLabel4.setText("Nombre:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, -1, -1));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 120, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 80, -1));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, 130, -1));
+
+        jLabel8.setFont(new java.awt.Font("Malgun Gothic", 1, 18)); // NOI18N
+        jLabel8.setText("Check-Out");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Malgun Gothic Semilight", 2, 16)); // NOI18N
+        jLabel9.setText("Introduzca los datos del cliente que desea check-out:");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 480, -1));
+
+        apellido1.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
+        apellido1.setText("Apellido:");
+        getContentPane().add(apellido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, 70, -1));
+        getContentPane().add(nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 120, -1));
+
+        apellido2.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
+        apellido2.setText("Numero de habitacion: ");
+        getContentPane().add(apellido2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 160, -1));
+        getContentPane().add(numhab1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, 120, -1));
+        getContentPane().add(cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 250, 130, -1));
+        getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 120, -1));
+
+        genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "choose", "Female", "Male", "Polygender" }));
+        genero.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                generoComponentAdded(evt);
+            }
+        });
+        getContentPane().add(genero, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, 130, -1));
+
+        apellido3.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
+        apellido3.setText("Cedula:");
+        getContentPane().add(apellido3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 230, 160, -1));
+
+        apellido4.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
+        apellido4.setText("Genero:");
+        getContentPane().add(apellido4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 300, 160, -1));
+
+        botonCheckout.setBackground(new java.awt.Color(0, 51, 102));
+        botonCheckout.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
+        botonCheckout.setForeground(new java.awt.Color(255, 255, 255));
+        botonCheckout.setText("Check-Out");
+        getContentPane().add(botonCheckout, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, 200, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -334,6 +386,10 @@ public class CheckOutGUI extends javax.swing.JFrame {
     private void checkoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkoutActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_checkoutActionPerformed
+
+    private void generoComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_generoComponentAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_generoComponentAdded
 
     /**
      * @param args the command line arguments
@@ -382,21 +438,32 @@ public class CheckOutGUI extends javax.swing.JFrame {
     private javax.swing.JButton Busquedares;
     private javax.swing.JButton Historial;
     private javax.swing.JButton Lobby;
+    private javax.swing.JLabel apellido;
+    private javax.swing.JLabel apellido1;
+    private javax.swing.JLabel apellido2;
+    private javax.swing.JLabel apellido3;
+    private javax.swing.JLabel apellido4;
+    private javax.swing.JButton botonCheckout;
+    private javax.swing.JTextField cedula;
     private javax.swing.JButton checkin;
     private javax.swing.JButton checkout;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField email;
+    private javax.swing.JComboBox<String> genero;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField nombre1;
+    private javax.swing.JTextField numhab1;
     // End of variables declaration//GEN-END:variables
 }
