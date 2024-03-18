@@ -202,7 +202,7 @@ public class main {
         }
         
         //Inicializa interfaz
-        //GUI interfaz1 = new GUI();
-        //interfaz1.setVisible(true);
+        GUI interfaz1 = new GUI();
+        interfaz1.setVisible(true);
     }
 }
