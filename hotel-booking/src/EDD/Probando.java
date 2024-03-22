@@ -50,32 +50,45 @@ public class Probando {
         
     SBT tree = new SBT();
     
-    tree.insert(50, null, 50);
-    tree.insert(40, tree.getRoot(), 40);
-    tree.insert(45, tree.getRoot(), 45);
-    tree.insert(10, tree.getRoot(), 10);
-    tree.insert(30, tree.getRoot(), 30);
-    tree.insert(55, tree.getRoot(), 55);
-    tree.insert(75, tree.getRoot(), 75);
-    tree.insert(54, tree.getRoot(), 54);
-    tree.insert(51, tree.getRoot(), 51);
-    tree.insert(68, tree.getRoot(), 68);
-    tree.insert(88, tree.getRoot(), 88);
-    tree.insert(12, tree.getRoot(), 12);
-    tree.insert(35, tree.getRoot(), 35);
+    tree.insert(13, 13);
+    tree.insert(84, 84);
+    tree.insert(89, 89);
+    tree.insert(43, 43);
+    tree.insert(8, 8);
+    tree.insert(53,53); 
+    tree.insert(59,59); 
+    tree.insert(16,16); 
+    tree.insert(15,15); 
+    tree.insert(7,7); 
+    tree.insert(9,9); 
+    tree.insert(72,72); 
+    System.out.println("Post Order");
+    tree.postOrder(tree.getRoot()); 
+    
+        
+    /*
     System.out.println("In Order");
     tree.inOrder(tree.getRoot());
     System.out.println("Pre Order");
     tree.preOrder(tree.getRoot());
     System.out.println("Post Order");
     tree.postOrder(tree.getRoot()); 
-    tree.deleteNodo(40, tree.getRoot(), null);
+    System.out.println("\n\n");
+    /*
     System.out.println("In Order");
     tree.inOrder(tree.getRoot());
     System.out.println("Pre Order");
     tree.preOrder(tree.getRoot());
     System.out.println("Post Order");
     tree.postOrder(tree.getRoot()); 
+    tree.insert(40, 40);
+    tree.insert(60, 60);
+    tree.insert(45, 45);
+    tree.insert(10, 10);
+    tree.insert(62, 62);
+    tree.insert(62, 62);
+    tree.delete(50);
+*/
     }
     
 }
