@@ -17,16 +17,22 @@ public class Client {
     private String email;
     private String genero;
     private String numero;
-    private ListaDoble card;
+    private int roomNum;
+    private boolean state; 
+    private String entrada;
+    private String salida;
 
-    public Client(int cedula, String nombre, String apellido, String email, String genero, String numero) {
+    public Client(int cedula, String nombre, String apellido, String email, String genero, String numero, int roomNum, boolean state, String entrada, String salida) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.genero = genero;
         this.numero = numero;
-        this.card = new ListaDoble();
+        this.roomNum = roomNum;
+        this.state = state;
+        this.entrada = entrada;
+        this.salida = salida;
     }
 
     public int getCedula() {
@@ -77,13 +83,37 @@ public class Client {
         this.numero = numero;
     }
 
-    public ListaDoble getCard() {
-        return card;
+    public int getRoomNum() {
+        return roomNum;
     }
 
-    public void setCard(ListaDoble card) {
-        this.card = card;
+    public void setRoomNum(int roomNum) {
+        this.roomNum = roomNum;
     }
-    
-    
+
+    public boolean isState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
+    }
+
+    public String getEntrada() {
+        return entrada;
+    }
+
+    public void setEntrada(String entrada) {
+        this.entrada = entrada;
+    }
+
+    public String getSalida() {
+        return salida;
+    }
+
+    public void setSalida(String salida) {
+        this.salida = salida;
+    }
+
+   
 }

@@ -12,11 +12,13 @@ package EDD;
 
 public class NodoTree {
     private Object element; 
-    private float key; 
+    private int height; 
+    private int key; 
     private NodoTree rightson, leftson; 
 
-    public NodoTree(Object element, float key) {
+    public NodoTree(Object element, int key) {
         this.element = element;
+        this.height = 1; 
         this.key = key;
         this.rightson = this.leftson = null;
     }
@@ -29,11 +31,11 @@ public class NodoTree {
         this.element = element;
     }
 
-    public float getKey() {
+    public int getKey() {
         return key;
     }
 
-    public void setKey(float key) {
+    public void setKey(int key) {
         this.key = key;
     }
 
@@ -44,12 +46,12 @@ public class NodoTree {
     public void setRightSon(NodoTree rightSon) {
         this.rightson = rightSon;
     }
-
-    public NodoTree getLeftson() {
+    
+    public NodoTree getLeftSon() {
         return leftson;
     }
 
-    public void setLeftson(NodoTree leftson) {
+    public void setLeftSon(NodoTree leftson) {
         this.leftson = leftson;
     }
     
@@ -61,9 +63,16 @@ public class NodoTree {
         return this.rightson == null; 
     }
     
-     public boolean onlyRightSon(){
+    public boolean onlyRightSon(){
         return this.leftson == null; 
     }
-    
-    
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+     
 }
