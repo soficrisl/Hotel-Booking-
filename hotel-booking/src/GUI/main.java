@@ -4,9 +4,8 @@
  */
 package GUI;
 
+import EDD.ListaDoble;
 import FUNCTIONS.ExcelManager;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  *
@@ -22,9 +21,9 @@ public class main {
         xlsx.readExcel();
         
         //Leer reservas y recorrer para obtener valores
-        List listareservas = xlsx.reservas;
-        for (int i = 0; i < listareservas.size(); i++) {
-            LinkedList datos = (LinkedList) listareservas.get(i);
+        ListaDoble listareservas = xlsx.reservas;
+        for (int i = 0; i < listareservas.getSize(); i++) {
+            ListaDoble datos = (ListaDoble) listareservas.get(i);
             String cedulares;
             String primer_nombreres;
             String segundo_nombreres;
@@ -33,8 +32,9 @@ public class main {
             String tipo_habres;
             String llegadares;
             String salidares;
+            int num_cliente;
 
-            for (int j = 0; j < datos.size(); j++) {
+            for (int j = 0; j < datos.getSize(); j++) {
                 // Gestionar todas las variables por separado
                 {
                     if (j == 0) {
@@ -52,6 +52,7 @@ public class main {
                     if (j == 3) {
                         String dato = (String) datos.get(j);
                         emailres = dato;
+                        System.out.println(emailres);
                     }
                     if (j == 4) {
                         String dato = (String) datos.get(j);
@@ -70,20 +71,23 @@ public class main {
                         salidares = dato;
                     }
                 }
-                
-                // añadirArbol(cedula, primer_nombre, segundo_nombre)
+                num_cliente = 0;
+                num_cliente++;
+                //HotelCard card = new HotelCard(0, llegadares, salidares, 0;
+                //Client(cedulares, primer_nombreres, segundo_nombreres, emailres, generores, num_cliente, card); 
+                //añadirArbol(cedula, primer_nombre, segundo_nombre)
             }
         }
         
         //Leer habitaciones y recorrer para obtener valores
-        List listahabitaciones = xlsx.habitaciones;
-        for (int i = 0; i < listahabitaciones.size(); i++) {
-            LinkedList datos = (LinkedList) listahabitaciones.get(i);
+        ListaDoble listahabitaciones = xlsx.habitaciones;
+        for (int i = 0; i < listahabitaciones.getSize(); i++) {
+            ListaDoble datos = (ListaDoble) listahabitaciones.get(i);
             String num_habitaciones;
             String tipo_habitaciones;
             String pisohab;
 
-            for (int j = 0; j < datos.size(); j++) {
+            for (int j = 0; j < datos.getSize(); j++) {
                 // Gestionar todas las variables por separado
                 {
                     if (j == 0) {
@@ -99,14 +103,16 @@ public class main {
                         pisohab = dato;
                     }
                     
-                }// añadirhabitaciones(num_habitaciones, tipo_habitaciones, pisohab)
+                }
+                //Room(num_habitaciones, tipo_habitaciones, int(pisohab));
+                // añadirhabitaciones(num_habitaciones, tipo_habitaciones, pisohab)
             }
         }
         
         //Leer habitaciones y recorrer para obtener valores
-        List listaestados = xlsx.estados;
-        for (int i = 0; i < listaestados.size(); i++) {
-            LinkedList datos = (LinkedList) listaestados.get(i);
+        ListaDoble listaestados = xlsx.estados;
+        for (int i = 0; i < listaestados.getSize(); i++) {
+            ListaDoble datos = (ListaDoble) listaestados.get(i);
             String num_habest;
             String primer_nombreest;
             String apellidoest;
@@ -115,7 +121,7 @@ public class main {
             String celularest;
             String llegadaest;
 
-            for (int j = 0; j < datos.size(); j++) {
+            for (int j = 0; j < datos.getSize(); j++) {
                 // Gestionar todas las variables por separado
                 {
                     if (j == 0) {
@@ -147,14 +153,16 @@ public class main {
                         llegadaest = dato;
                     }
                 }
+                //HotelCard card = new HotelCard(num_habest, llegadares, null, 1);
+                //Client(celularest, primer_nombreest, apellidoest, emailest, generoest, 0, card)
                 // añadirestado(num_habest, primer_nombre, apellidoest)
             }
         }
         
         //Leer historicos y recorrer para obtener valores
-        List listahistoricos = xlsx.historicos;
-        for (int i = 0; i < listahistoricos.size(); i++) {
-            LinkedList datos = (LinkedList) listahistoricos.get(i);
+        ListaDoble listahistoricos = xlsx.historicos;
+        for (int i = 0; i < listahistoricos.getSize(); i++) {
+            ListaDoble datos = (ListaDoble) listahistoricos.get(i);
             String cedulahist;
             String primer_nombrehist;
             String segundo_nombrehist;
@@ -163,7 +171,7 @@ public class main {
             String llegadahist;
             String num_habhist;
 
-            for (int j = 0; j < datos.size(); j++) {
+            for (int j = 0; j < datos.getSize(); j++) {
                 // Gestionar todas las variables por separado
                 {
                     if (j == 0) {
@@ -197,6 +205,8 @@ public class main {
                        
                     }
                 }
+                //HotelCard card = new HotelCard(num_habhist, llegadahist, null, 2);
+                //Client(cedulahist, primer_nombrehist, segundo_nombrehist, emailhist, generohist, 0, card)
                 // añadirHistorico(cedula, primer_nombre, segundo_nombre)
             }
         }

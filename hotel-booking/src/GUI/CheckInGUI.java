@@ -109,6 +109,11 @@ public class CheckInGUI extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        cedula = new javax.swing.JTextField();
+        buscarres = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -299,15 +304,15 @@ public class CheckInGUI extends javax.swing.JFrame {
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, -20, 650, 100));
 
-        jLabel1.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
         jLabel1.setText("Apellido:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 120, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, 80, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 120, -1));
 
-        jLabel4.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
         jLabel4.setText("Nombre:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 120, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 70, -1));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 160, 120, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -322,7 +327,26 @@ public class CheckInGUI extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, -1, 110));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 500, 150));
+
+        jLabel8.setFont(new java.awt.Font("Malgun Gothic", 1, 18)); // NOI18N
+        jLabel8.setText("Check-In");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Malgun Gothic Semilight", 2, 16)); // NOI18N
+        jLabel9.setText("Introduzca los datos del cliente que desea Check-In:");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 480, -1));
+
+        jLabel10.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
+        jLabel10.setText("Cedula:");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 60, -1));
+        getContentPane().add(cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 120, 20));
+
+        buscarres.setBackground(new java.awt.Color(0, 51, 102));
+        buscarres.setFont(new java.awt.Font("Malgun Gothic", 2, 12)); // NOI18N
+        buscarres.setForeground(new java.awt.Color(255, 255, 255));
+        buscarres.setText("Check-In");
+        getContentPane().add(buscarres, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, 160, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -392,15 +416,20 @@ public class CheckInGUI extends javax.swing.JFrame {
     private javax.swing.JButton Busquedares;
     private javax.swing.JButton Historial;
     private javax.swing.JButton Lobby;
+    private javax.swing.JButton buscarres;
+    private javax.swing.JTextField cedula;
     private javax.swing.JButton checkin;
     private javax.swing.JButton checkout;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;

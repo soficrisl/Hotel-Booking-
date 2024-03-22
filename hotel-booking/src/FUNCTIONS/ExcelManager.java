@@ -1,12 +1,11 @@
 package FUNCTIONS;
 
+import EDD.ListaDoble;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
@@ -28,26 +27,26 @@ public class ExcelManager {
      * 7. Llegada
      * 8. Salida
      */
-    public List reservas;
+    public ListaDoble reservas;
     /**
      * Orden
      */
-    public List habitaciones;
+    public ListaDoble habitaciones;
     /**
      * Orden
      */
-    public List estados;
+    public ListaDoble estados;
     /**
      * Orden
      */
-    public List historicos;
+    public ListaDoble historicos;
 
     public ExcelManager() {
         path = System.getProperty("user.dir") + File.separator + "src" + File.separator + "database" + File.separator + "Booking_hotel.xlsx";
-        reservas = new LinkedList();
-        habitaciones = new LinkedList();
-        estados = new LinkedList();
-        historicos = new LinkedList();
+        reservas = new ListaDoble();
+        habitaciones = new ListaDoble();
+        estados = new ListaDoble();
+        historicos = new ListaDoble();
     }
 
     public void readExcel() {
@@ -100,7 +99,7 @@ public class ExcelManager {
             int cellIndexStart = rowSheet.getFirstCellNum();
             int cellIndexEnd = rowSheet.getLastCellNum();
 
-            List reserva = new LinkedList();
+            ListaDoble reserva = new ListaDoble();
             
             for (int j = cellIndexStart; j < cellIndexEnd; j++) {
                 Cell cellSheet = rowSheet.getCell(j);
@@ -108,7 +107,7 @@ public class ExcelManager {
                 // Nombre, apellido, correo, género, tipo_hab, celular
                 if ("STRING".equals(cellSheet.getCellType().toString())) {
                     // System.out.println("string: " + cellSheet.getStringCellValue());
-                    reserva.add(cellSheet.getStringCellValue());
+                    reserva.insertFinal(cellSheet.getStringCellValue());
 
                     // Salida
                 } else if ("FORMULA".equals(cellSheet.getCellType().toString())) {
@@ -116,7 +115,7 @@ public class ExcelManager {
                     Date b = cellSheet.getDateCellValue();
                     String date = sdf.format(b);
                     // System.out.println("salida: " + date);
-                    reserva.add(date);
+                    reserva.insertFinal(date);
 
                     // Cédula, llegada
                 } else if ("NUMERIC".equals(cellSheet.getCellType().toString())) {
@@ -126,7 +125,7 @@ public class ExcelManager {
                         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                         Date b = cellSheet.getDateCellValue();
                         String date = sdf.format(b);
-                        reserva.add(date);
+                        reserva.insertFinal(date);
                         // System.out.println("llegada: " + date);
 
                     } // Cedula
@@ -134,13 +133,13 @@ public class ExcelManager {
                         String value = String.valueOf(cellSheet.getNumericCellValue());
                         value = value.replace(".", "");
                         value = value.replace("E7", "");
-                        reserva.add(value);
+                        reserva.insertFinal(value);
                         // System.out.println("cedula: " + value);
                     }
                 }
             }
             
-            reservas.add(reserva);
+            reservas.insertFinal(reserva);
         }
     }
 
@@ -156,7 +155,7 @@ public class ExcelManager {
             int cellIndexStart = rowSheet.getFirstCellNum();
             int cellIndexEnd = rowSheet.getLastCellNum();
 
-            List habitacion = new LinkedList();
+            ListaDoble habitacion = new ListaDoble();
             
             for (int j = cellIndexStart; j < cellIndexEnd; j++) {
                 Cell cellSheet = rowSheet.getCell(j);
@@ -164,19 +163,19 @@ public class ExcelManager {
                 //tipo_hab
                 if ("STRING".equals(cellSheet.getCellType().toString())) {
                     //System.out.println("string: " + cellSheet.getStringCellValue());
-                    habitacion.add(cellSheet.getStringCellValue());
+                    habitacion.insertFinal(cellSheet.getStringCellValue());
 
                     // num_hab, piso
                 } else if ("NUMERIC".equals(cellSheet.getCellType().toString())) {
                     String value = String.valueOf(cellSheet.getNumericCellValue());
                         value = value.replace(".0", "");
-                        habitacion.add(value);
+                        habitacion.insertFinal(value);
                         //System.out.println("num: " + value);
    
                 }
             }
             
-            habitaciones.add(habitacion);
+            habitaciones.insertFinal(habitacion);
         }
     }
 
@@ -192,7 +191,7 @@ public class ExcelManager {
             int cellIndexStart = rowSheet.getFirstCellNum();
             int cellIndexEnd = rowSheet.getLastCellNum();
 
-            List estado = new LinkedList();
+            ListaDoble estado = new ListaDoble();
             
             for (int j = cellIndexStart; j < cellIndexEnd; j++) {
                 Cell cellSheet = rowSheet.getCell(j);
@@ -200,7 +199,7 @@ public class ExcelManager {
                 // Nombre, apellido, correo, género
                 if ("STRING".equals(cellSheet.getCellType().toString())) {
                     //System.out.println("string: " + cellSheet.getStringCellValue());
-                    estado.add(cellSheet.getStringCellValue());
+                    estado.insertFinal(cellSheet.getStringCellValue());
 
                     // llegada
                 } else if ("FORMULA".equals(cellSheet.getCellType().toString())) {
@@ -208,7 +207,7 @@ public class ExcelManager {
                     Date b = cellSheet.getDateCellValue();
                     String date = sdf.format(b);
                     //System.out.println("llegada: " + date);
-                    estado.add(date);
+                    estado.insertFinal(date);
 
                     // celular,  llegada
                 } else if ("NUMERIC".equals(cellSheet.getCellType().toString())) {
@@ -218,20 +217,20 @@ public class ExcelManager {
                         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                         Date b = cellSheet.getDateCellValue();
                         String date = sdf.format(b);
-                        estado.add(date);
+                        estado.insertFinal(date);
                         //System.out.println("llegada: " + date);
 
                     } // num_hab
                     else {
                         String value = String.valueOf(cellSheet.getNumericCellValue());
                         value = value.replace(".0", "");
-                        estado.add(value);
+                        estado.insertFinal(value);
                         //System.out.println("numhab: " + value);
                     }
                 }
             }
             
-            estados.add(estado);
+            estados.insertFinal(estado);
         }
     }
 
@@ -247,7 +246,7 @@ public class ExcelManager {
             int cellIndexStart = rowSheet.getFirstCellNum();
             int cellIndexEnd = rowSheet.getLastCellNum();
 
-            List historico = new LinkedList();
+            ListaDoble historico = new ListaDoble();
             
             for (int j = cellIndexStart; j < cellIndexEnd; j++) {
                 Cell cellSheet = rowSheet.getCell(j);
@@ -255,7 +254,7 @@ public class ExcelManager {
                 // Nombre, apellido, correo, género
                 if ("STRING".equals(cellSheet.getCellType().toString())) {
                     //System.out.println("string: " + cellSheet.getStringCellValue());
-                    historico.add(cellSheet.getStringCellValue());
+                    historico.insertFinal(cellSheet.getStringCellValue());
 
                     // llegada
                 } else if ("FORMULA".equals(cellSheet.getCellType().toString())) {
@@ -263,7 +262,7 @@ public class ExcelManager {
                     Date b = cellSheet.getDateCellValue();
                     String date = sdf.format(b);
                     //System.out.println("llegada: " + date);
-                    historico.add(date);
+                    historico.insertFinal(date);
 
                     // Cédula, llegada, num_hab
                 } else if ("NUMERIC".equals(cellSheet.getCellType().toString())) {
@@ -273,7 +272,7 @@ public class ExcelManager {
                         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                         Date b = cellSheet.getDateCellValue();
                         String date = sdf.format(b);
-                        historico.add(date);
+                        historico.insertFinal(date);
                         //System.out.println("llegada: " + date);
 
                     } // Cedula, num_hab
@@ -282,13 +281,13 @@ public class ExcelManager {
                         value = value.replace(".0", "");
                         value = value.replace(".", "");
                         value = value.replace("E7", "");
-                        historico.add(value);
+                        historico.insertFinal(value);
                         //System.out.println("numeric: " + value);
                     }
                 }
             }
             
-            historicos.add(historico);
+            historicos.insertFinal(historico);
         }
     }
 }

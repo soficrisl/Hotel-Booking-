@@ -335,4 +335,18 @@ public class ListaDoble implements ILista{
         }
         return -1; 
     }
+    
+    public Object get (int index) {
+        if (isEmpty()) return -1; 
+        int aux = 0; 
+        NodoDoble pointer = getHead(); 
+        while (pointer!= null && aux < index) {
+            if (aux == index) return pointer.getElement();
+            pointer = pointer.getNext();
+            aux++; 
+        }
+        return null; 
+    }
+    
+    
 }
