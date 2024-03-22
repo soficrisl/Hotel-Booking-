@@ -4,8 +4,6 @@
  */
 package OBJECTS;
 
-import EDD.ListaDoble;
-
 /**
  *
  * @author cristiandresgp
@@ -115,5 +113,5 @@ public class Client {
         this.salida = salida;
     }
 
-   
+  
 }

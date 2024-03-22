@@ -50,7 +50,6 @@ public class ExcelManager {
         historicos = new LinkedList();
     }
 
-    // Leer excel LISTO
     public void readExcel() {
         XSSFWorkbook book = null;
 
@@ -89,7 +88,6 @@ public class ExcelManager {
         }
     }
 
-    // Leer reservas LISTO
     public void treatReservas(XSSFSheet sheet) {
         // Empezar desde la fila con datos. La 0 no contiene datos sino el título
         int firstRow = 1;
@@ -228,7 +226,7 @@ public class ExcelManager {
                         String value = String.valueOf(cellSheet.getNumericCellValue());
                         value = value.replace(".0", "");
                         estado.add(value);
-                        System.out.println("numhab: " + value);
+                        //System.out.println("numhab: " + value);
                     }
                 }
             }
@@ -256,7 +254,7 @@ public class ExcelManager {
                 
                 // Nombre, apellido, correo, género
                 if ("STRING".equals(cellSheet.getCellType().toString())) {
-                    System.out.println("string: " + cellSheet.getStringCellValue());
+                    //System.out.println("string: " + cellSheet.getStringCellValue());
                     historico.add(cellSheet.getStringCellValue());
 
                     // llegada
@@ -264,7 +262,7 @@ public class ExcelManager {
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                     Date b = cellSheet.getDateCellValue();
                     String date = sdf.format(b);
-                    System.out.println("llegada: " + date);
+                    //System.out.println("llegada: " + date);
                     historico.add(date);
 
                     // Cédula, llegada, num_hab
@@ -276,7 +274,7 @@ public class ExcelManager {
                         Date b = cellSheet.getDateCellValue();
                         String date = sdf.format(b);
                         historico.add(date);
-                        System.out.println("llegada: " + date);
+                        //System.out.println("llegada: " + date);
 
                     } // Cedula, num_hab
                     else {
@@ -285,7 +283,7 @@ public class ExcelManager {
                         value = value.replace(".", "");
                         value = value.replace("E7", "");
                         historico.add(value);
-                        System.out.println("cedula: " + value);
+                        //System.out.println("numeric: " + value);
                     }
                 }
             }

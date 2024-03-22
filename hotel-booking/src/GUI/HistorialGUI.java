@@ -104,9 +104,12 @@ public class HistorialGUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        numhab = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        buscarhist = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -297,10 +300,10 @@ public class HistorialGUI extends javax.swing.JFrame {
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, -20, 650, 100));
 
-        jLabel1.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 14)); // NOI18N
-        jLabel1.setText("Numero de Habitacion:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, -1, -1));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 150, -1));
+        jLabel1.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
+        jLabel1.setText("Numero de Habitación:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 160, 30));
+        getContentPane().add(numhab, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 150, 20));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -315,7 +318,21 @@ public class HistorialGUI extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, -1, 110));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 510, 190));
+
+        jLabel4.setFont(new java.awt.Font("Malgun Gothic", 1, 18)); // NOI18N
+        jLabel4.setText("Historial");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Malgun Gothic Semilight", 2, 16)); // NOI18N
+        jLabel9.setText("Introduzca el numero de habitación que desea buscar:");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 480, -1));
+
+        buscarhist.setBackground(new java.awt.Color(0, 51, 102));
+        buscarhist.setFont(new java.awt.Font("Malgun Gothic", 2, 12)); // NOI18N
+        buscarhist.setForeground(new java.awt.Color(255, 255, 255));
+        buscarhist.setText("buscar");
+        getContentPane().add(buscarhist, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, 160, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -392,14 +409,17 @@ public class HistorialGUI extends javax.swing.JFrame {
     private javax.swing.JButton Busquedares;
     private javax.swing.JButton Historial;
     private javax.swing.JButton Lobby;
+    private javax.swing.JButton buscarhist;
     private javax.swing.JButton checkin;
     private javax.swing.JButton checkout;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
@@ -407,6 +427,6 @@ public class HistorialGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField numhab;
     // End of variables declaration//GEN-END:variables
 }
