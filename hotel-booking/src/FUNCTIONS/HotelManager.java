@@ -39,7 +39,7 @@ public class HotelManager {
         }
 
         // Si no se encuentra ningún elemento con la clave dada (o que el apellido no coincida), devuelve null
-        Messages.error("No existe ningún cliente con estas carácteristicas");
+        //Messages.error("No existe ningún cliente con estas carácteristicas");
         return null;
     }
     
@@ -67,7 +67,7 @@ public class HotelManager {
         }
 
         // Si no se encuentra el nodo con la clave dada, devuelve null
-        Messages.error("Esta cédula no está registrada");
+        //Messages.error("Esta cédula no está registrada");
         return null;
 }
     
@@ -82,8 +82,8 @@ public class HotelManager {
             // Si la clave coincide con la clave del nodo actual, devuelve el nodo
             if (current.getKey() == num) {
                 Room room = (Room) current.getElement();
-                ListaDoble historial = room.getHistorial();
-                return historial;
+                //ListaDoble historial = room.getHistorial();
+                //return historial;
             }
             // Si la clave es menor que la clave del nodo actual, ve al hijo izquierdo
             else if (num < current.getKey()) {
@@ -96,7 +96,7 @@ public class HotelManager {
         }
 
         // Si no se encuentra el nodo con la clave dada, devuelve null
-        Messages.error("Este número de habitación no es válido");
+        //Messages.error("Este número de habitación no es válido");
         return null;
         
     

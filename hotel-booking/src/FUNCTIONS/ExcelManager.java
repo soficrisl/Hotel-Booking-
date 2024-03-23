@@ -1,294 +1,281 @@
 package FUNCTIONS;
 
+import EDD.Hastable;
+import EDD.ListaDoble;
+import EDD.SBT;
+import java.awt.HeadlessException;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.DateUtil;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import static java.lang.String.valueOf;
+import javax.swing.JOptionPane;
+
+/**
+ * Esta clase lee y controla los datos del excel. Incluye las funciones de: Leer_reservas, Leer_Habitaciones, Leer_Estado y Leer_Historial 
+ *
+ * @author Julene
+ * @version 22/03/2024
+ */
 
 public class ExcelManager {
 
-    private final String path;
     /**
-     * Orden:
-     * 1. Cedula
-     * 2. Nombre
-     * 3. Apellido
-     * 4. Email
-     * 5. Género
-     * 6. TipoHab
-     * 7. Llegada
-     * 8. Salida
+     * Metodo que lee el sheet de Reservas y maneja los datos. Se anaden dichos datos a las estructuras en la que corresponden
+     * 
+     *@IOException ex
+     *@HeadlessException
+     * 
      */
-    public List reservas;
-    /**
-     * Orden
-     */
-    public List habitaciones;
-    /**
-     * Orden
-     */
-    public List estados;
-    /**
-     * Orden
-     */
-    public List historicos;
+    
+    public void Leer_reservas() {
+            String line;
+            String reservas_csv = "";
+            String path = "test\\reservas.csv";
+            File file = new File(path);
+            try {
+                if (!file.exists()) {
+                    file.createNewFile();
+                } else {
+                    FileReader fr = new FileReader(file);
+                    BufferedReader br = new BufferedReader(fr);
+                    while ((line = br.readLine()) != null) {
+                        if (!line.isEmpty()) {
+                            reservas_csv += line + "\n";
+                        }
+                    }
+                    if (!"".equals(reservas_csv)) {
+                        String[] expresion_split = reservas_csv.split("\n");
+                        for (int i = 0; i < expresion_split.length; i++) {
 
-    public ExcelManager() {
-        path = System.getProperty("user.dir") + File.separator + "src" + File.separator + "database" + File.separator + "Booking_hotel.xlsx";
-        reservas = new LinkedList();
-        habitaciones = new LinkedList();
-        estados = new LinkedList();
-        historicos = new LinkedList();
-    }
+                            String[] datos = expresion_split[i].split(",");
 
-    public void readExcel() {
-        XSSFWorkbook book = null;
+                            int cedula_res = Integer.parseInt(datos[0].replaceAll("\\.", ""));
+                            String nombre_res = datos[1];
+                            String apellido_res = datos[2];
+                            String email_res = datos[3];
+                            String sexo_res = datos[4];
+                            String telf_res = datos[6];
+                            String tipo_hab_res = datos[5];
+                            String fecha_llegada_res = datos[7];
+                            String fecha_salida_res = datos[8];
+                            
+//                            System.out.println(cedula_res);
+//                            System.out.println(nombre_res);
+//                            System.out.println(apellido_res);
+//                            System.out.println(email_res);
+//                            System.out.println(sexo_res);
+//                            System.out.println(telf_res);
+//                            System.out.println(tipo_hab_res);
+//                              System.out.println(fecha_llegada_res);
+//                            System.out.println(fecha_salida_res);
+//                            
+                            //HotelCard card = new HotelCard(num_hab_res, fecha_llegada_res, fecha_salida_res, 0);
+                            //Cliente cliente = new Cliente(cedulaa_res, nombre_res, apellido_res, email_res, sexo_res, cedula_res, card);
 
-        try {
-            // Leer excel
-            FileInputStream stream;
-            stream = new FileInputStream(path);
-            book = new XSSFWorkbook(stream);
+                        }
+                    }
+                    br.close();
+                }
+            } catch (HeadlessException | IOException ex) {
+                JOptionPane.showMessageDialog(null, "Error al leer la expresion");
+            }
 
-            // Recorrer excel
-            int sheets = book.getNumberOfSheets();
-            for (int i = 0; i < sheets; i++) {
+        }
+        
+        /**
+        * Metodo que lee el sheet de Habitaciones y maneja los datos. Se anaden dichos datos a las estructuras en la que corresponden
+        * 
+        *@IOException ex
+        *@HeadlessException
+        * 
+        */
+    // meter como parametro = SBT lista_habitacion, ListaDoble historial
+        public void Leer_habitaciones() {
+            String line;
+            String expresion_txt = "";
+            String path = "test\\habitaciones.csv";
+            File file = new File(path);
+            try {
+                if (!file.exists()) {
+                    file.createNewFile();
+                } else {
+                    FileReader fr = new FileReader(file);
+                    BufferedReader br = new BufferedReader(fr);
+                    while ((line = br.readLine()) != null) {
+                        if (!line.isEmpty()) {
+                            expresion_txt += line + "\n";
+                        }
+                    }
+                    if (!"".equals(expresion_txt)) {
+                        String[] expresion_split = expresion_txt.split("\n");
+                        for (int i = 0; i < expresion_split.length; i++) {
+                            String[] datos = expresion_split[i].split(",");
 
-                // Ubicar la hoja
-                XSSFSheet sheet = book.getSheetAt(i);
+                            int num_hab = Integer.parseInt(datos[0]);
+                            String tipo_hab = datos[1];
+                            int piso_hab = Integer.parseInt(datos[2]);
 
-                // Obtener el nombre de la hoja
-                String sheetName = sheet.getSheetName().toLowerCase();
+                            //Room room = new Room(historial, false, num_hab, tipo_hab, piso_hab);
+                            //insertaralarbol();
+//                            System.out.println(num_hab);
+//                            System.out.println(datos[1]);
+//                            System.out.println(datos[2]);
+                        }
+                    }
+                    br.close();
+                }
+            } catch (HeadlessException | IOException ex) {
+                JOptionPane.showMessageDialog(null, "Error al leer la expresion");
+            }
+        }
+        
+        
+        /**
+        * Metodo que lee el sheet de Estados y maneja los datos. Se anaden dichos datos a las estructuras en la que corresponden
+        * Chequea los espacios en blanco y les asigna el numero de habitacion de la persona que tienen arriba
+        *@IOException ex
+        *@HeadlessException
+        * 
+        */
+        //pasar como parametro Hastable
+        public void Leer_Estado() {
+            String line;
+            String expresion_txt = "";
+            String path = "test\\estado.csv";
+            File file = new File(path);
+            try {
+                if (!file.exists()) {
+                    file.createNewFile();
+                } else {
+                    FileReader fr = new FileReader(file);
+                    BufferedReader br = new BufferedReader(fr);
+                    while ((line = br.readLine()) != null) {
+                        if (!line.isEmpty()) {
+                            expresion_txt += line + "\n";
+                        }
+                    }
+                    if (!"".equals(expresion_txt)) {
+                        String[] expresion_split = expresion_txt.split("\n");
+                        int ultima_hab = 0;
+                        for (int i = 0; i < expresion_split.length - 1; i++) {
+                            String[] datos = expresion_split[i].split(",");
 
-                // Mandar hoja a sus respectivas funciones de tratamiento de datos
-                if (null != sheetName) {
-                    switch (sheetName) {
-                        case "reservas" ->
-                            treatReservas(sheet);
-                        case "habitaciones" ->
-                            treatHabitaciones(sheet);
-                        case "estado" ->
-                            treatEstado(sheet);
-                        case "historico" ->
-                            treatHistorico(sheet);
+                            if (!datos[0].equalsIgnoreCase("")) {
+                                int num_hab = Integer.parseInt(datos[0]);
+
+                                String nombre_est = datos[1];
+                                String apellido_est = datos[2];
+                                String email_est = datos[3];
+                                String sexo_est = datos[4];
+                                String telf_est = datos[5];
+                                String fecha_llegada = datos[6];
+                                ultima_hab = num_hab;
+                                
+//                                System.out.println(nombre_est);
+//                                System.out.println(apellido_est);
+//                                System.out.println(email_est);
+//                                System.out.println(sexo_est);
+//                                System.out.println(telf_est);
+//                                System.out.println(fecha_llegada);
+//                                System.out.println(num_hab);
+//                                
+                                //HotelCard card = new HotelCard(num_hab_hist, fecha_llegada_hist, null, 1);
+                                //Client cliente = new Cliente(cedula_est, nombre_est, apellido_est, email_est, sexo_est, 0, card);
+
+                                //table.Agregar(cliente);
+                                
+                            } else {
+                                if (i != 0) {
+
+                                    String nombre_est = datos[1];
+                                    String apellido_est = datos[2];
+                                    String email_est = datos[3];
+                                    String sexo_est = datos[4];
+                                    String telf_est = datos[5];
+
+                                    int hab = ultima_hab;
+                                    //HotelCard card = new HotelCard(hab, fecha_llegada_hist, null, 1);
+                                    //Client cliente = new Cliente(cedula_est, nombre_est, apellido_est, email_est, sexo_est, 0, card);
+
+                                    //table.Agregar(cliente);S
+//                                    
+//                                    System.out.println(hab);
+//                                    System.out.println(nombre_est);
+//                                    System.out.println(apellido_est);
+//                                    System.out.println(email_est);
+//                                    System.out.println(sexo_est);
+//                                    System.out.println(telf_est);
+//                                    
+                                    
+                                    
+                                }
+
+                            }
+                        }
+
+                    }
+                    br.close();
+                }
+            } catch (HeadlessException | IOException ex) {
+                JOptionPane.showMessageDialog(null, "Error al leer la expresion");
+            }
+        }
+        
+        /**
+        * Metodo que lee el sheet de Historial y maneja los datos. Se anaden dichos datos a las estructuras en la que corresponden
+        * 
+        *@IOException ex
+        *@HeadlessException
+        * 
+        */
+        // parametro ListaDoble lista_historial
+        public void Leer_Historial(ListaDoble lista_historial) {
+            String line;
+            String expresion_txt = "";
+            String path = "test\\Historico.csv";
+            File file = new File(path);
+            try {
+                if (!file.exists()) {
+                    file.createNewFile();
+                } else {
+                    FileReader fr = new FileReader(file);
+                    BufferedReader br = new BufferedReader(fr);
+                    while ((line = br.readLine()) != null) {
+                        if (!line.isEmpty()) {
+                            expresion_txt += line + "\n";
+                        }
+                    }
+                    if (!"".equals(expresion_txt)) {
+                        String[] expresion_split = expresion_txt.split("\n");
+                        for (int i = 0; i < expresion_split.length; i++) {
+                            String[] datos = expresion_split[i].split(",");
+                            int cedula_hist = Integer.parseInt(datos[0].replaceAll("\\.", ""));
+                            String nombre_hist = datos[1];
+                            String apellido_hist = datos[2];
+                            String email_hist = datos[3];
+                            String sexo_hist = datos[4];
+                            String fecha_llegada_hist = datos[5];
+                            int num_hab_hist = Integer.parseInt(datos[6]);
+                        
+//                            System.out.println(cedula_hist);
+//                            System.out.println(nombre_hist);
+//                            System.out.println(apellido_hist);
+//                            System.out.println(email_hist);
+//                            System.out.println(sexo_hist);
+//                            System.out.println(fecha_llegada_hist);
+//                            System.out.println(num_hab_hist);
+//                            
+                        //HotelCard card = new HotelCard(num_hab_hist, fecha_llegada_hist, null, 0);
+                        //Client cliente = new Cliente(cedula_hist, nombre_hist, apellido_hist, email_hist, sexo_hist, 0, card);
+                        // lista_historial.insertarAlFinal(cliente);
+                        }
+
                     }
                 }
+            } catch (HeadlessException | IOException ex) {
+                JOptionPane.showMessageDialog(null, "Error al leer la expresion");
             }
-        } catch (IOException e) {
-            System.out.println("ERROR: No se cargó el Excel! Verificar archivo");
         }
-    }
-
-    public void treatReservas(XSSFSheet sheet) {
-        // Empezar desde la fila con datos. La 0 no contiene datos sino el título
-        int firstRow = 1;
-        
-        // Terminar hasta la fila que contiene datos
-        int lastRow = sheet.getLastRowNum();
-
-        for (int i = firstRow; i < lastRow + 1; i++) {
-            Row rowSheet = sheet.getRow(i);
-            int cellIndexStart = rowSheet.getFirstCellNum();
-            int cellIndexEnd = rowSheet.getLastCellNum();
-
-            List reserva = new LinkedList();
-            
-            for (int j = cellIndexStart; j < cellIndexEnd; j++) {
-                Cell cellSheet = rowSheet.getCell(j);
-                
-                // Nombre, apellido, correo, género, tipo_hab, celular
-                if ("STRING".equals(cellSheet.getCellType().toString())) {
-                    // System.out.println("string: " + cellSheet.getStringCellValue());
-                    reserva.add(cellSheet.getStringCellValue());
-
-                    // Salida
-                } else if ("FORMULA".equals(cellSheet.getCellType().toString())) {
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    Date b = cellSheet.getDateCellValue();
-                    String date = sdf.format(b);
-                    // System.out.println("salida: " + date);
-                    reserva.add(date);
-
-                    // Cédula, llegada
-                } else if ("NUMERIC".equals(cellSheet.getCellType().toString())) {
-
-                    // Llegada
-                    if (DateUtil.isCellDateFormatted(cellSheet)) {
-                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                        Date b = cellSheet.getDateCellValue();
-                        String date = sdf.format(b);
-                        reserva.add(date);
-                        // System.out.println("llegada: " + date);
-
-                    } // Cedula
-                    else {
-                        String value = String.valueOf(cellSheet.getNumericCellValue());
-                        value = value.replace(".", "");
-                        value = value.replace("E7", "");
-                        reserva.add(value);
-                        // System.out.println("cedula: " + value);
-                    }
-                }
-            }
-            
-            reservas.add(reserva);
-        }
-    }
-
-    public void treatHabitaciones(XSSFSheet sheet) {
-        // Empezar desde la fila con datos. La 0 no contiene datos sino el título
-        int firstRow = 1;
-        
-        // Terminar hasta la fila que contiene datos
-        int lastRow = sheet.getLastRowNum();
-
-        for (int i = firstRow; i < lastRow + 1; i++) {
-            Row rowSheet = sheet.getRow(i);
-            int cellIndexStart = rowSheet.getFirstCellNum();
-            int cellIndexEnd = rowSheet.getLastCellNum();
-
-            List habitacion = new LinkedList();
-            
-            for (int j = cellIndexStart; j < cellIndexEnd; j++) {
-                Cell cellSheet = rowSheet.getCell(j);
-                
-                //tipo_hab
-                if ("STRING".equals(cellSheet.getCellType().toString())) {
-                    //System.out.println("string: " + cellSheet.getStringCellValue());
-                    habitacion.add(cellSheet.getStringCellValue());
-
-                    // num_hab, piso
-                } else if ("NUMERIC".equals(cellSheet.getCellType().toString())) {
-                    String value = String.valueOf(cellSheet.getNumericCellValue());
-                        value = value.replace(".0", "");
-                        habitacion.add(value);
-                        //System.out.println("num: " + value);
-   
-                }
-            }
-            
-            habitaciones.add(habitacion);
-        }
-    }
-
-    public void treatEstado(XSSFSheet sheet) {
-        // Empezar desde la fila con datos. La 0 no contiene datos sino el título
-        int firstRow = 1;
-        
-        // Terminar hasta la fila que contiene datos
-        int lastRow = sheet.getLastRowNum();
-
-        for (int i = firstRow; i < lastRow + 1; i++) {
-            Row rowSheet = sheet.getRow(i);
-            int cellIndexStart = rowSheet.getFirstCellNum();
-            int cellIndexEnd = rowSheet.getLastCellNum();
-
-            List estado = new LinkedList();
-            
-            for (int j = cellIndexStart; j < cellIndexEnd; j++) {
-                Cell cellSheet = rowSheet.getCell(j);
-                
-                // Nombre, apellido, correo, género
-                if ("STRING".equals(cellSheet.getCellType().toString())) {
-                    //System.out.println("string: " + cellSheet.getStringCellValue());
-                    estado.add(cellSheet.getStringCellValue());
-
-                    // llegada
-                } else if ("FORMULA".equals(cellSheet.getCellType().toString())) {
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    Date b = cellSheet.getDateCellValue();
-                    String date = sdf.format(b);
-                    //System.out.println("llegada: " + date);
-                    estado.add(date);
-
-                    // celular,  llegada
-                } else if ("NUMERIC".equals(cellSheet.getCellType().toString())) {
-
-                    // Llegada
-                    if (DateUtil.isCellDateFormatted(cellSheet)) {
-                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                        Date b = cellSheet.getDateCellValue();
-                        String date = sdf.format(b);
-                        estado.add(date);
-                        //System.out.println("llegada: " + date);
-
-                    } // num_hab
-                    else {
-                        String value = String.valueOf(cellSheet.getNumericCellValue());
-                        value = value.replace(".0", "");
-                        estado.add(value);
-                        //System.out.println("numhab: " + value);
-                    }
-                }
-            }
-            
-            estados.add(estado);
-        }
-    }
-
-    public void treatHistorico(XSSFSheet sheet) {
-        // Empezar desde la fila con datos. La 0 no contiene datos sino el título
-        int firstRow = 1;
-        
-        // Terminar hasta la fila que contiene datos
-        int lastRow = sheet.getLastRowNum();
-
-        for (int i = firstRow; i < lastRow + 1; i++) {
-            Row rowSheet = sheet.getRow(i);
-            int cellIndexStart = rowSheet.getFirstCellNum();
-            int cellIndexEnd = rowSheet.getLastCellNum();
-
-            List historico = new LinkedList();
-            
-            for (int j = cellIndexStart; j < cellIndexEnd; j++) {
-                Cell cellSheet = rowSheet.getCell(j);
-                
-                // Nombre, apellido, correo, género
-                if ("STRING".equals(cellSheet.getCellType().toString())) {
-                    //System.out.println("string: " + cellSheet.getStringCellValue());
-                    historico.add(cellSheet.getStringCellValue());
-
-                    // llegada
-                } else if ("FORMULA".equals(cellSheet.getCellType().toString())) {
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    Date b = cellSheet.getDateCellValue();
-                    String date = sdf.format(b);
-                    //System.out.println("llegada: " + date);
-                    historico.add(date);
-
-                    // Cédula, llegada, num_hab
-                } else if ("NUMERIC".equals(cellSheet.getCellType().toString())) {
-
-                    // Llegada
-                    if (DateUtil.isCellDateFormatted(cellSheet)) {
-                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                        Date b = cellSheet.getDateCellValue();
-                        String date = sdf.format(b);
-                        historico.add(date);
-                        //System.out.println("llegada: " + date);
-
-                    } // Cedula, num_hab
-                    else {
-                        String value = String.valueOf(cellSheet.getNumericCellValue());
-                        value = value.replace(".0", "");
-                        value = value.replace(".", "");
-                        value = value.replace("E7", "");
-                        historico.add(value);
-                        //System.out.println("numeric: " + value);
-                    }
-                }
-            }
-            
-            historicos.add(historico);
-        }
-    }
 }
