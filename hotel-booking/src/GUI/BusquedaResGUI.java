@@ -5,21 +5,24 @@
 package GUI;
 
 /**
+ *  Clase de la interfaz para Buscar Reservaciones
  *
- * @author User
+ * @author Julene
  */
 public class BusquedaResGUI extends javax.swing.JFrame {
-
+    //Atributos
     public static GUI GUIinicial;
     public static BusquedaGUI busquedaGUI;
     public static CheckInGUI checkinGUI;
     public static HistorialGUI historialGUI;
     public static CheckOutGUI checkoutGUI;
     /**
+     * Constructores de la clase  dependiendo de que interfaz venga
      * 
-     * Creates new form GUI
+     * @throws Exception 
      */
     
+    //Desde historialGUI
     public BusquedaResGUI(HistorialGUI historialGUI) {
         initComponents();
         this.historialGUI = historialGUI;
@@ -30,6 +33,7 @@ public class BusquedaResGUI extends javax.swing.JFrame {
         this.setResizable(false);
     }
     
+    //Desde CheckoutGUI
     public BusquedaResGUI(CheckOutGUI checkoutGUI) {
         initComponents();
         this.checkoutGUI = checkoutGUI;
@@ -40,6 +44,7 @@ public class BusquedaResGUI extends javax.swing.JFrame {
         this.setResizable(false);
     }
     
+    //Desde BusquedaGUI
     public BusquedaResGUI(BusquedaGUI busquedaGUI) {
         initComponents();
         this.busquedaGUI = busquedaGUI;
@@ -50,6 +55,7 @@ public class BusquedaResGUI extends javax.swing.JFrame {
         this.setResizable(false);
     }
     
+    //Desde CheckInGUI
     public BusquedaResGUI(CheckInGUI checkinGUI) {
         initComponents();
         this.checkinGUI = checkinGUI;
@@ -60,6 +66,7 @@ public class BusquedaResGUI extends javax.swing.JFrame {
         this.setResizable(false);
     }
     
+    //Desde GUIinicial
     public BusquedaResGUI(GUI GUIinicial) {
         initComponents();
         this.GUIinicial = GUIinicial;
@@ -337,15 +344,27 @@ public class BusquedaResGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Metodo para ir a la interfaz GUIinicial
+     * @param evt 
+     */
     private void LobbyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LobbyActionPerformed
         GUI GUIinicial = new GUI(this);
         
     }//GEN-LAST:event_LobbyActionPerformed
 
+    /**
+     * Metodo para ir a la interfaz HistorialGUI
+     * @param evt 
+     */
     private void HistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialActionPerformed
         HistorialGUI historialGUI = new HistorialGUI(this);
     }//GEN-LAST:event_HistorialActionPerformed
 
+    /**
+     * Metodo para ir a la interfaz CheckInGUI
+     * @param evt 
+     */
     private void checkinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkinActionPerformed
         CheckInGUI interfazcheckIn = new CheckInGUI(this);
     }//GEN-LAST:event_checkinActionPerformed
@@ -354,10 +373,18 @@ public class BusquedaResGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_BusquedaresActionPerformed
 
+    /**
+     * Metodo para ir a la interfaz BusquedaGUI
+     * @param evt 
+     */
     private void BusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BusquedaActionPerformed
         BusquedaGUI busquedaGUI = new BusquedaGUI(this);
     }//GEN-LAST:event_BusquedaActionPerformed
 
+    /**
+     * Metodo para ir a la interfaz CheckoitGUI
+     * @param evt 
+     */
     private void checkoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkoutActionPerformed
         CheckOutGUI checkoutGUI = new CheckOutGUI(this);
     }//GEN-LAST:event_checkoutActionPerformed
