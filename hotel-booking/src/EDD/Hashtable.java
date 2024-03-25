@@ -8,11 +8,11 @@ package EDD;
  *
  * @author Sofia
  */
-public class Hastable {
+public class Hashtable {
     private ListaDoble[] hastable; 
     
-    public Hastable() {
-        this.hastable = new ListaDoble[97];
+    public Hashtable() {
+        this.hastable = new ListaDoble[1259];
         for (int i = 0; i < this.hastable.length; i++) {
             this.hastable[i] = new ListaDoble(); 
         }

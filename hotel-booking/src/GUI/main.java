@@ -4,11 +4,15 @@
  */
 package GUI;
 
+import EDD.Hashtable;
 import EDD.ListaDoble;
 import EDD.SBT;
 import FUNCTIONS.ExcelManager;
-import java.util.LinkedList;
-import java.util.List;
+import FUNCTIONS.HotelManager;
+import OBJECTS.Client;
+import OBJECTS.Reservation;
+import OBJECTS.Room;
+
 
 /**
  *
@@ -20,15 +24,18 @@ public class main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ListaDoble lista_historial =  new ListaDoble();
+
         ExcelManager excel = new ExcelManager();
-        excel.Leer_Historial(lista_historial);
-        excel.Leer_habitaciones();
-        excel.Leer_Estado();
-        excel.Leer_reservas();
-        
-        
-        GUI interfaz1 = new GUI();
-        interfaz1.setVisible(true);
+        ListaDoble historial = excel.Leer_Historial(); 
+        SBT roomTree = excel.Leer_habitaciones(historial); 
+        Hashtable table = excel.Leer_Estado();
+        roomTree = excel.uptadeRooms(roomTree, table); 
+        SBT reserveTree = excel.Leer_reservas();
+        HotelManager manager = new HotelManager(table, roomTree, reserveTree); 
+    
+        //GUI interfaz1 = new GUI();
+        //interfaz1.setVisible(true);
     }
+   
 }
+
