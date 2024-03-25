@@ -169,36 +169,15 @@ public class SBT {
             return null; 
         }
         if (key > root.getKey()){
-            search(key, root.getRightSon()); 
+            return search(key, root.getRightSon()); 
         }else if (key < root.getKey()) {
-            search(key, root.getLeftSon()); 
+            return search(key, root.getLeftSon()); 
         }else {
             return root.getElement(); 
         }
-        return null; 
     }
-    /*
-    public void insert(Object element, NodoTree root, float key) {
-        NodoTree nodo = new NodoTree(element, key); 
-        if (root == null) {
-            setRoot(nodo);
-        }else {
-            if (key > root.getKey()) {
-                if (root.getRightSon() == null) {
-                    root.setRightSon(nodo);
-                }else {
-                    insert (element, root.getRightSon(), key); 
-                }
-            } else if (key < root.getKey()) {
-                if (root.getLeftson() == null) {
-                    root.setLeftson(nodo);
-                }else {
-                    insert (element, root.getLeftson(), key); 
-                }
-            } else System.out.println("No se pueden agregar dos elementos con el mismo Key");
-        }
-    }
-    */
+    
+    
     
     public void preOrder(NodoTree root){
         if (root!= null){
@@ -219,85 +198,27 @@ public class SBT {
     public void inOrder(NodoTree root) {
         if (root!= null){
             inOrder(root.getLeftSon()); 
-            System.out.println(root.getElement());
+            System.out.println(root.getKey() + " - " + root.getElement());
             inOrder(root.getRightSon());
             
         }
     }
     
     
-    
-    /*
-    public void deleteNodo(int key, NodoTree pointer, NodoTree pointerPrevious) {
-        if (isEmpty()){
-            System.out.println("Arbol vacio");
-        } else {
-            if (key < pointer.getKey()) {
-                deleteNodo(key, pointer.getLeftson(), pointer); 
-            } else if (key > pointer.getKey()) {
-                deleteNodo(key, pointer.getRightSon(), pointer); 
-            } else {
-                if (pointer.isLeaf()) {
-                    if (pointerPrevious == null) {
-                        setRoot(null);
-                    }else if (key < pointerPrevious.getKey()) {
-                        pointerPrevious.setLeftson(null);
-                    } else {
-                        pointerPrevious.setRightSon(null);
-                    }
-                } else if (pointer.onlyRightSon()) {
-                    if (pointerPrevious == null) {
-                        setRoot(pointer.getRightSon());
-                    }else if (key < pointerPrevious.getKey()) {
-                        pointerPrevious.setLeftson(pointer.getRightSon());
-                    } else {
-                        pointerPrevious.setRightSon(pointer.getRightSon());
-                    }
-                } else if (pointer.onlyLeftSon()) {
-                    if (pointerPrevious == null) {
-                        setRoot(pointer.getLeftson());
-                    }else if (key < pointerPrevious.getKey()) {
-                        pointerPrevious.setLeftson(pointer.getLeftson());
-                    } else {
-                        pointerPrevious.setRightSon(pointer.getLeftson());
-                    }
-                } else {
-                    NodoTree replacement = biggestOfSmallest(pointer); 
-                    if (pointerPrevious == null) {
-                        setRoot(replacement); 
-                    }else if (key < pointerPrevious.getKey()) {
-                        pointerPrevious.setLeftson(replacement); 
-                        
-                    } else {
-                        pointerPrevious.setRightSon(replacement);
-                    }
-                    replacement.setLeftson(pointer.getLeftson());
-                    replacement.setRightSon(pointer.getRightSon());
-                }
-                
-            }
+    public Object setNodoElement (int key, Object element){
+        if (root == null) {
+            return null; 
         }
+        if (key > root.getKey()){
+            return search(key, root.getRightSon()); 
+        }else if (key < root.getKey()) {
+            return search(key, root.getLeftSon()); 
+        }else {
+            root.setElement(element);
+            return element;
+        } 
     }
-    */
     
-    /*
-    public NodoTree biggestOfSmallest(NodoTree nodo) {
-        NodoTree pointerPrevious = nodo;  
-        NodoTree pointer = nodo.getLeftson();    
-        if (!pointer.onlyLeftSon()){
-            while (pointer.getRightSon() != null) {
-                pointerPrevious = pointer; 
-                pointer = pointer.getRightSon(); 
-            }
-        }
-        pointerPrevious.setRightSon(null);
-        if (pointer.onlyLeftSon()) {
-            pointerPrevious.setRightSon(pointer.getLeftson());
-            pointer.setLeftson(null);
-        }
-        return pointer; 
-    }
-*/
     
     
 

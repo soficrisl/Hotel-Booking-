@@ -184,7 +184,10 @@ public class ListaDoble implements ILista{
         }else {
             NodoDoble newHead = getHead().getNext();
             NodoDoble eliminated = getHead(); 
-            newHead.setPrevious(null);
+            if (newHead != null){
+                newHead.setPrevious(null);
+                
+            }
             getHead().setNext(null);
             setHead(newHead); 
             size--;

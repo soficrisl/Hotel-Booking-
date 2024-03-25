@@ -1,8 +1,12 @@
 package FUNCTIONS;
 
-import EDD.Hastable;
+import EDD.Hashtable;
 import EDD.ListaDoble;
+import EDD.NodoDoble;
 import EDD.SBT;
+import OBJECTS.Client;
+import OBJECTS.Reservation;
+import OBJECTS.Room;
 import java.awt.HeadlessException;
 import java.io.BufferedReader;
 import java.io.File;
@@ -29,59 +33,52 @@ public class ExcelManager {
      * 
      */
     
-    public void Leer_reservas() {
-            String line;
-            String reservas_csv = "";
-            String path = "test\\reservas.csv";
-            File file = new File(path);
-            try {
-                if (!file.exists()) {
-                    file.createNewFile();
-                } else {
-                    FileReader fr = new FileReader(file);
-                    BufferedReader br = new BufferedReader(fr);
-                    while ((line = br.readLine()) != null) {
-                        if (!line.isEmpty()) {
-                            reservas_csv += line + "\n";
-                        }
+    public SBT Leer_reservas() {
+        SBT tree1 = new SBT(); 
+        String line;
+        String reservas_csv = "";
+        String path = "test\\reservas.csv";
+        File file = new File(path);
+        try {
+            if (!file.exists()) {
+                file.createNewFile();
+            } else {
+                FileReader fr = new FileReader(file);
+                BufferedReader br = new BufferedReader(fr);
+                while ((line = br.readLine()) != null) {
+                    if (!line.isEmpty()) {
+                        reservas_csv += line + "\n";
                     }
-                    if (!"".equals(reservas_csv)) {
-                        String[] expresion_split = reservas_csv.split("\n");
-                        for (int i = 0; i < expresion_split.length; i++) {
-
-                            String[] datos = expresion_split[i].split(",");
-
-                            int cedula_res = Integer.parseInt(datos[0].replaceAll("\\.", ""));
-                            String nombre_res = datos[1];
-                            String apellido_res = datos[2];
-                            String email_res = datos[3];
-                            String sexo_res = datos[4];
-                            String telf_res = datos[6];
-                            String tipo_hab_res = datos[5];
-                            String fecha_llegada_res = datos[7];
-                            String fecha_salida_res = datos[8];
-                            
-//                            System.out.println(cedula_res);
-//                            System.out.println(nombre_res);
-//                            System.out.println(apellido_res);
-//                            System.out.println(email_res);
-//                            System.out.println(sexo_res);
-//                            System.out.println(telf_res);
-//                            System.out.println(tipo_hab_res);
-//                              System.out.println(fecha_llegada_res);
-//                            System.out.println(fecha_salida_res);
-//                            
-                            //HotelCard card = new HotelCard(num_hab_res, fecha_llegada_res, fecha_salida_res, 0);
-                            //Cliente cliente = new Cliente(cedulaa_res, nombre_res, apellido_res, email_res, sexo_res, cedula_res, card);
-
-                        }
-                    }
-                    br.close();
                 }
+                if (!"".equals(reservas_csv)) {
+                    String[] expresion_split = reservas_csv.split("\n");
+                    for (int i = 0; i < expresion_split.length; i++) {
+
+                        String[] datos = expresion_split[i].split(",");
+
+                        int cedula_res = Integer.parseInt(datos[0].replaceAll("\\.", ""));
+                        String nombre_res = datos[1];
+                        String apellido_res = datos[2];
+                        String email_res = datos[3];
+                        String sexo_res = datos[4];
+                        String telf_res = datos[6];
+                        String tipo_hab_res = datos[5];
+                        String fecha_llegada_res = datos[7];
+                        String fecha_salida_res = datos[8];
+ //    public Client(int id, String f_name, String l_name, String email, String gender, int roomNum, String cellphone, String arrival, String departure) {           
+                        Client client = new Client (cedula_res, nombre_res, apellido_res, email_res, sexo_res,-1,telf_res, fecha_llegada_res, fecha_salida_res); 
+                        Reservation reserve = new Reservation(cedula_res, client, tipo_hab_res); 
+                        tree1.insert(reserve, cedula_res);
+
+                    }
+                }
+                br.close();
+                return tree1; 
+            }
             } catch (HeadlessException | IOException ex) {
                 JOptionPane.showMessageDialog(null, "Error al leer la expresion");
             }
-
+          return tree1; 
         }
         
         /**
@@ -92,7 +89,9 @@ public class ExcelManager {
         * 
         */
     // meter como parametro = SBT lista_habitacion, ListaDoble historial
-        public void Leer_habitaciones() {
+        public SBT Leer_habitaciones(ListaDoble historialComplete) {
+            SBT tree2 = new SBT(); 
+            ListaDoble historial = new ListaDoble(); 
             String line;
             String expresion_txt = "";
             String path = "test\\habitaciones.csv";
@@ -116,8 +115,18 @@ public class ExcelManager {
                             int num_hab = Integer.parseInt(datos[0]);
                             String tipo_hab = datos[1];
                             int piso_hab = Integer.parseInt(datos[2]);
-
-                            //Room room = new Room(historial, false, num_hab, tipo_hab, piso_hab);
+                            
+                            NodoDoble pointer = historialComplete.getHead(); 
+                            while (pointer != null){
+                                Client client = (Client)pointer.getElement(); 
+                                if (client.getRoomNum() == num_hab){
+                                    historial.insertBegin(client);
+                                }
+                                pointer = pointer.getNext(); 
+                            }
+  //public Room(int NumHab, int floor, ListaDoble historial, String roomType) {
+                            Room room = new Room(num_hab,piso_hab, historial, tipo_hab);
+                            tree2.insert(room, num_hab);
                             //insertaralarbol();
 //                            System.out.println(num_hab);
 //                            System.out.println(datos[1]);
@@ -125,10 +134,13 @@ public class ExcelManager {
                         }
                     }
                     br.close();
+                    return tree2; 
+                    
                 }
             } catch (HeadlessException | IOException ex) {
                 JOptionPane.showMessageDialog(null, "Error al leer la expresion");
             }
+           return tree2; 
         }
         
         
@@ -140,7 +152,8 @@ public class ExcelManager {
         * 
         */
         //pasar como parametro Hastable
-        public void Leer_Estado() {
+        public Hashtable Leer_Estado() {
+            Hashtable table = new Hashtable(); 
             String line;
             String expresion_txt = "";
             String path = "test\\estado.csv";
@@ -164,51 +177,30 @@ public class ExcelManager {
 
                             if (!datos[0].equalsIgnoreCase("")) {
                                 int num_hab = Integer.parseInt(datos[0]);
-
                                 String nombre_est = datos[1];
                                 String apellido_est = datos[2];
                                 String email_est = datos[3];
                                 String sexo_est = datos[4];
                                 String telf_est = datos[5];
                                 String fecha_llegada = datos[6];
-                                ultima_hab = num_hab;
-                                
-//                                System.out.println(nombre_est);
-//                                System.out.println(apellido_est);
-//                                System.out.println(email_est);
-//                                System.out.println(sexo_est);
-//                                System.out.println(telf_est);
-//                                System.out.println(fecha_llegada);
-//                                System.out.println(num_hab);
-//                                
-                                //HotelCard card = new HotelCard(num_hab_hist, fecha_llegada_hist, null, 1);
-                                //Client cliente = new Cliente(cedula_est, nombre_est, apellido_est, email_est, sexo_est, 0, card);
-
-                                //table.Agregar(cliente);
-                                
+                                ultima_hab = num_hab;                              
+                                Client client = new Client (-1, nombre_est, apellido_est, email_est, sexo_est, num_hab, telf_est, fecha_llegada, ""); 
+                                String key = nombre_est + " " + apellido_est; 
+                                table.insert(key, client);
+                  
                             } else {
                                 if (i != 0) {
-
                                     String nombre_est = datos[1];
                                     String apellido_est = datos[2];
                                     String email_est = datos[3];
                                     String sexo_est = datos[4];
                                     String telf_est = datos[5];
-
-                                    int hab = ultima_hab;
-                                    //HotelCard card = new HotelCard(hab, fecha_llegada_hist, null, 1);
-                                    //Client cliente = new Cliente(cedula_est, nombre_est, apellido_est, email_est, sexo_est, 0, card);
-
-                                    //table.Agregar(cliente);S
-//                                    
-//                                    System.out.println(hab);
-//                                    System.out.println(nombre_est);
-//                                    System.out.println(apellido_est);
-//                                    System.out.println(email_est);
-//                                    System.out.println(sexo_est);
-//                                    System.out.println(telf_est);
-//                                    
-                                    
+                                    String fecha_llegada = datos[6];
+                                    int hab = ultima_hab;                               
+                                    Client client = new Client (-1, nombre_est, apellido_est, email_est, sexo_est,hab, telf_est, fecha_llegada, ""); 
+                                    String key = nombre_est +" "+ apellido_est; 
+                                    //System.out.println(key);
+                                    table.insert(key, client);
                                     
                                 }
 
@@ -217,10 +209,12 @@ public class ExcelManager {
 
                     }
                     br.close();
+                    return table; 
                 }
             } catch (HeadlessException | IOException ex) {
                 JOptionPane.showMessageDialog(null, "Error al leer la expresion");
             }
+            return table; 
         }
         
         /**
@@ -230,8 +224,8 @@ public class ExcelManager {
         *@HeadlessException
         * 
         */
-        // parametro ListaDoble lista_historial
-        public void Leer_Historial(ListaDoble lista_historial) {
+        public ListaDoble Leer_Historial() {
+            ListaDoble lista_historial =  new ListaDoble();
             String line;
             String expresion_txt = "";
             String path = "test\\Historico.csv";
@@ -266,16 +260,37 @@ public class ExcelManager {
 //                            System.out.println(sexo_hist);
 //                            System.out.println(fecha_llegada_hist);
 //                            System.out.println(num_hab_hist);
-//                            
-                        //HotelCard card = new HotelCard(num_hab_hist, fecha_llegada_hist, null, 0);
-                        //Client cliente = new Cliente(cedula_hist, nombre_hist, apellido_hist, email_hist, sexo_hist, 0, card);
-                        // lista_historial.insertarAlFinal(cliente);
+//    public Client(int id, String f_name, String l_name, String email, String gender, int roomNum, String cellphone, String arrival, String departure) {                           
+                        Client cliente = new Client(cedula_hist, nombre_hist, apellido_hist, email_hist, sexo_hist, num_hab_hist, "No data", fecha_llegada_hist, "No data");
+                        lista_historial.insertFinal(cliente);
                         }
 
                     }
+                    br.close();
+                    return lista_historial; 
                 }
             } catch (HeadlessException | IOException ex) {
                 JOptionPane.showMessageDialog(null, "Error al leer la expresion");
             }
+            
+            return lista_historial; 
+        }
+
+        public SBT uptadeRooms(SBT roomTree, Hashtable table){
+            ListaDoble[] hashtable = table.getHastable(); 
+            for (ListaDoble clients: hashtable) {
+                NodoDoble pointer = clients.getHead(); 
+                while (pointer != null){
+                    int num_hab = ((Client) pointer.getElement()).getRoomNum();
+                    try {
+                       Room room = (Room)roomTree.search(num_hab, roomTree.getRoot());
+                       room.setOcupied(true);
+                       roomTree.setNodoElement(num_hab, room); 
+                    } catch (Exception E) {
+                        }
+                    pointer = pointer.getNext(); 
+                }
+            }
+            return roomTree; 
         }
 }
