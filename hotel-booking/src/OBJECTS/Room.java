@@ -5,6 +5,7 @@
 package OBJECTS;
 
 import EDD.ListaDoble;
+import EDD.NodoDoble;
 
 /**
  *
@@ -66,7 +67,20 @@ public class Room {
     }
     
     public String data(){
-        return NumHab + " - " + roomType + " - " + ocupied +" - "+ ((Client)historial.getHead().getElement()).getId(); 
+        String x  = ""; 
+        NodoDoble pointer = historial.getHead(); 
+        int aux = 0; 
+        while (pointer != null) {
+            x += "Client " + aux + " " + ((Client)pointer.getElement()).getId() + " - / "; 
+            pointer = pointer.getNext(); 
+            aux++; 
+        }
+        
+        return NumHab + " - " + roomType + " - " + ocupied +" - " + x; 
+    }
+    
+    public void insertInHistory(Client client) {
+        historial.insertFinal(client);
     }
     
     
