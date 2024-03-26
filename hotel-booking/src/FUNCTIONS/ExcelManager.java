@@ -89,9 +89,8 @@ public class ExcelManager {
         * 
         */
     // meter como parametro = SBT lista_habitacion, ListaDoble historial
-        public SBT Leer_habitaciones(ListaDoble historialComplete) {
+        public SBT Leer_habitaciones(ListaDoble info) {
             SBT tree2 = new SBT(); 
-            ListaDoble historial = new ListaDoble(); 
             String line;
             String expresion_txt = "";
             String path = "test\\habitaciones.csv";
@@ -110,13 +109,12 @@ public class ExcelManager {
                     if (!"".equals(expresion_txt)) {
                         String[] expresion_split = expresion_txt.split("\n");
                         for (int i = 0; i < expresion_split.length; i++) {
+                            ListaDoble historial = new ListaDoble(); 
                             String[] datos = expresion_split[i].split(",");
-
                             int num_hab = Integer.parseInt(datos[0]);
                             String tipo_hab = datos[1];
-                            int piso_hab = Integer.parseInt(datos[2]);
-                            
-                            NodoDoble pointer = historialComplete.getHead(); 
+                            int piso_hab = Integer.parseInt(datos[2]);               
+                            NodoDoble pointer = info.getHead(); 
                             while (pointer != null){
                                 Client client = (Client)pointer.getElement(); 
                                 if (client.getRoomNum() == num_hab){
@@ -124,7 +122,6 @@ public class ExcelManager {
                                 }
                                 pointer = pointer.getNext(); 
                             }
-  //public Room(int NumHab, int floor, ListaDoble historial, String roomType) {
                             Room room = new Room(num_hab,piso_hab, historial, tipo_hab);
                             tree2.insert(room, num_hab);
                             //insertaralarbol();
