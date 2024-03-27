@@ -24,7 +24,9 @@ public class Datos {
         roomTree = excel.uptadeRooms(roomTree, table); 
         SBT reserveTree = excel.Leer_reservas();
         manager = new HotelManager(table, roomTree, reserveTree); 
-        System.out.println(roomTree.getRoot().getElement());
+        
+        
+       
     }
 
     public static HotelManager getManager() {

@@ -415,9 +415,10 @@ public class BusquedaResGUI extends javax.swing.JFrame {
         CampoResultado.setText("");
         String cedulaString = CampoCedula.getText().toString();
         
-
-        if (!contieneNumeroEnteroPositivo(cedulaString)){
-            Messages.error("Verifica que los datos introducidos sean correctos.");}
+        if (CampoCedula.getText().trim().isEmpty()) {
+            Messages.error("No pueden haber campos vacíos");}
+        else if (!contieneNumeroEnteroPositivo(cedulaString)){
+            Messages.error("Verifica que los datos introducidos sean correctos, cédula inválida.");}
         else{
         HotelManager manager = Datos.getManager();
         cedula = Integer.parseInt(cedulaString);
@@ -431,7 +432,7 @@ public class BusquedaResGUI extends javax.swing.JFrame {
             CampoResultado.setText(info);
             
         } else {
-            Messages.information("No se encontraron reservaciones con la césula proporcionada.");
+            Messages.information("No se encontraron reservaciones con la cédula proporcionada.");
         }
         }
         CampoCedula.setText("");

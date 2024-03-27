@@ -418,8 +418,10 @@ public class BusquedaGUI extends javax.swing.JFrame {
         nombre = CampoNombre.getText().toString();
         apellido = CampoApellido.getText().toString();
 
-        if (!contieneSoloLetras(nombre) || !contieneSoloLetras(apellido)){
-            Messages.error("Verifica que los datos introducidos sean correctos.");}
+        if (CampoNombre.getText().trim().isEmpty() || CampoApellido.getText().trim().isEmpty()) {
+            Messages.error("No pueden haber campos vacíos");}
+        else if (!contieneSoloLetras(nombre) || !contieneSoloLetras(apellido)){
+            Messages.error("Verifica que los datos introducidos sean correctos, solo se permiten caractéres numéricos.");}
         else{
         HotelManager manager = Datos.getManager();
         ListaDoble resultadoBusqueda = manager.searchClient(nombre, apellido);
@@ -429,11 +431,11 @@ public class BusquedaGUI extends javax.swing.JFrame {
             Messages.information("Se han encontrado los datos exitosamente!");
             NodoDoble nodo = resultadoBusqueda.getHead();
             Client cliente = (Client) nodo.getElement();
-            String info = "Nombre: " + cliente.getF_name() + ". Apellido: " + cliente.getL_name() + ". Número de habitació: " + cliente.getRoomNum();
+            String info = "Nombre: " + cliente.getF_name() + ". Apellido: " + cliente.getL_name() + ". Número de habitación: " + cliente.getRoomNum();
             CampoResultado.setText(info);
             
         } else {
-            Messages.information("No se encontraron clientes con ese nombre y apellido.");
+            Messages.information("No se encontraron clientes con este nombre y apellido.");
         }
         }
         CampoNombre.setText("");
