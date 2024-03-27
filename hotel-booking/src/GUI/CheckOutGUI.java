@@ -4,6 +4,15 @@
  */
 package GUI;
 
+import EDD.ListaDoble;
+import EDD.NodoDoble;
+import static FUNCTIONS.FuncionesGenerales.capitalize;
+import static FUNCTIONS.FuncionesGenerales.contieneNumeroEnteroPositivo;
+import static FUNCTIONS.FuncionesGenerales.contieneSoloLetras;
+import FUNCTIONS.HotelManager;
+import FUNCTIONS.Messages;
+import OBJECTS.Client;
+
 /**
  *  Clase de la interfaz para hacer el Checkout
  *
@@ -18,6 +27,11 @@ public class CheckOutGUI extends javax.swing.JFrame {
     public static CheckInGUI checkinGUI;
     public static HistorialGUI historialGUI;
     public static BusquedaGUI busquedaGUI;
+    private static String nombre;
+    private static String apellido;
+    private static int maxOpcion;
+    private static int opcionCheckout;
+    private static ListaDoble listaClientes;
     /**
      * Constructores de la clase  dependiendo de que interfaz venga
      * 
@@ -116,17 +130,18 @@ public class CheckOutGUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        opcion = new javax.swing.JTextField();
+        CampoOpcion = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         apellido1 = new javax.swing.JLabel();
-        nombre1 = new javax.swing.JTextField();
+        CampoNombre = new javax.swing.JTextField();
         botonCheckout = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        CampoResultado = new javax.swing.JTextArea();
         apellido2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        CampoApellido = new javax.swing.JTextField();
+        buscar = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -334,12 +349,12 @@ public class CheckOutGUI extends javax.swing.JFrame {
         jLabel4.setText("Nombre:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 80, -1));
 
-        opcion.addActionListener(new java.awt.event.ActionListener() {
+        CampoOpcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opcionActionPerformed(evt);
+                CampoOpcionActionPerformed(evt);
             }
         });
-        getContentPane().add(opcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, 130, -1));
+        getContentPane().add(CampoOpcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, 130, -1));
 
         jLabel8.setFont(new java.awt.Font("Malgun Gothic", 1, 18)); // NOI18N
         jLabel8.setText("Check-Out");
@@ -352,25 +367,41 @@ public class CheckOutGUI extends javax.swing.JFrame {
         apellido1.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
         apellido1.setText("Opción: ");
         getContentPane().add(apellido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 70, -1));
-        getContentPane().add(nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 120, -1));
+        getContentPane().add(CampoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 120, -1));
 
         botonCheckout.setBackground(new java.awt.Color(0, 51, 102));
         botonCheckout.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
         botonCheckout.setForeground(new java.awt.Color(255, 255, 255));
         botonCheckout.setText("Check-Out");
+        botonCheckout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCheckoutActionPerformed(evt);
+            }
+        });
         getContentPane().add(botonCheckout, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, 200, 40));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 300, -1, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        CampoResultado.setColumns(20);
+        CampoResultado.setRows(5);
+        jScrollPane2.setViewportView(CampoResultado);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, 490, -1));
 
         apellido2.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
         apellido2.setText("Apellido:");
-        getContentPane().add(apellido2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 170, 70, -1));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 190, 130, -1));
+        getContentPane().add(apellido2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, 70, -1));
+        getContentPane().add(CampoApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, 130, -1));
+
+        buscar.setBackground(new java.awt.Color(0, 51, 102));
+        buscar.setFont(new java.awt.Font("Malgun Gothic", 2, 12)); // NOI18N
+        buscar.setForeground(new java.awt.Color(255, 255, 255));
+        buscar.setText("buscar");
+        buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 160, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -419,9 +450,81 @@ public class CheckOutGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_checkoutActionPerformed
 
-    private void opcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionActionPerformed
+    private void CampoOpcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoOpcionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_opcionActionPerformed
+    }//GEN-LAST:event_CampoOpcionActionPerformed
+
+    private void botonCheckoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCheckoutActionPerformed
+        if (CampoResultado.getText().isEmpty()) {
+        Messages.error("Debes introducir los datos del cliente previamente.");
+        }
+        else if (CampoOpcion.getText().isEmpty()){
+        Messages.error("Debes introducir una opción.");
+        }
+        else if (!contieneNumeroEnteroPositivo(CampoOpcion.getText())){
+            Messages.error("Debes introducir una opción válida, solo se admiten valores numéricos.");
+        }
+        else {
+            opcionCheckout = Integer.parseInt(CampoOpcion.getText());
+            if (opcionCheckout>maxOpcion || opcionCheckout<=0){
+            Messages.error("Debes introducir una opción válida, solo se admiten valores dentro del rango.");
+            
+            }
+            else{
+                NodoDoble pointer = listaClientes.getHead();
+                for (int i = 0; i < opcionCheckout-1; i++) {
+                    pointer=pointer.getNext();
+                    
+                }
+                Messages.information("Se ha realizado el CheckOut exitosamente!");
+                HotelManager manager = Datos.getManager();
+                Client cliente = (Client) pointer.getElement();
+                manager.CheckOut(cliente);
+                CampoResultado.setText("");
+            }
+        
+        }
+
+        CampoOpcion.setText("");
+    }//GEN-LAST:event_botonCheckoutActionPerformed
+
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        CampoResultado.setText("");
+        nombre = CampoNombre.getText().toString();
+        apellido = CampoApellido.getText().toString();
+
+        if (CampoNombre.getText().trim().isEmpty() || CampoApellido.getText().trim().isEmpty()) {
+            Messages.error("No pueden haber campos vacíos");}
+        else if (!contieneSoloLetras(nombre) || !contieneSoloLetras(apellido)){
+            Messages.error("Verifica que los datos introducidos sean correctos, solo se permiten caractéres del abecedario.");}
+        else{
+        HotelManager manager = Datos.getManager();
+        nombre = capitalize(nombre);
+        apellido = capitalize(apellido);
+        listaClientes = manager.searchClient(nombre, apellido);
+
+        // Verificar si se encontraron resultados
+        if (listaClientes != null) {
+            Messages.information("Se han encontrado los datos exitosamente! Por favor introduce en el campo de opción el número del cliente correspondiente.");
+            NodoDoble pointer = listaClientes.getHead();
+            int contador = 0;
+            while (pointer != null){
+            Client cliente = (Client) pointer.getElement();
+            String info = contador+1 + ".     Nombre y apellido: " + cliente.getF_name() + " " + cliente.getL_name() + ". Número de habitación: " + cliente.getRoomNum() + ". Correo: " + cliente.getEmail() + ". Telf.: " + cliente.getCellphone();
+            CampoResultado.setText(CampoResultado.getText() + "\n" + info);
+            pointer = pointer.getNext();
+            contador++;}
+            maxOpcion = contador;
+            
+
+        } else {
+            Messages.information("No se encontraron clientes con este nombre y apellido.");
+        }
+        }
+        CampoNombre.setText("");
+        CampoApellido.setText("");
+        CampoOpcion.setText("");
+    }//GEN-LAST:event_buscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -468,11 +571,16 @@ public class CheckOutGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Busqueda;
     private javax.swing.JButton Busquedares;
+    private javax.swing.JTextField CampoApellido;
+    private javax.swing.JTextField CampoNombre;
+    private javax.swing.JTextField CampoOpcion;
+    private javax.swing.JTextArea CampoResultado;
     private javax.swing.JButton Historial;
     private javax.swing.JButton Lobby;
     private javax.swing.JLabel apellido1;
     private javax.swing.JLabel apellido2;
     private javax.swing.JButton botonCheckout;
+    private javax.swing.JButton buscar;
     private javax.swing.JButton checkin;
     private javax.swing.JButton checkout;
     private javax.swing.JLabel jLabel2;
@@ -492,9 +600,5 @@ public class CheckOutGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField nombre1;
-    private javax.swing.JTextField opcion;
     // End of variables declaration//GEN-END:variables
 }

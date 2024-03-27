@@ -107,5 +107,9 @@ public class Client {
         return id + " - " + f_name +  " - " + l_name +  " - " + email +  " - " + gender + " - " + roomNum + " - " + cellphone +  " - " + arrival +  " - " + departure; 
     }
     
+    public String show(){
+        return "ID: " + id + ". Nombre: y apellido: " + f_name +  " " + l_name +  ". Correo: " + email +  ". Género: " + gender + ". Nro de habitación: " + roomNum + ". Telf.: " + cellphone +  ". Llegada: " + arrival +  ". Salida: " + departure; 
+    }
+    
 }
 
