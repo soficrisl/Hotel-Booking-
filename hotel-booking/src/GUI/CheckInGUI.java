@@ -4,6 +4,16 @@
  */
 package GUI;
 
+import EDD.ListaDoble;
+import EDD.NodoDoble;
+import static FUNCTIONS.FuncionesGenerales.capitalize;
+import static FUNCTIONS.FuncionesGenerales.contieneNumeroEnteroPositivo;
+import static FUNCTIONS.FuncionesGenerales.contieneSoloLetras;
+import FUNCTIONS.HotelManager;
+import FUNCTIONS.Messages;
+import GUI.Datos;
+import OBJECTS.Client;
+
 /**
  *  Clase de la interfaz para hacer el Check-In
  *
@@ -17,6 +27,10 @@ public class CheckInGUI extends javax.swing.JFrame {
     public static BusquedaResGUI busquedaresGUI;
     public static HistorialGUI historialGUI;
     public static CheckOutGUI checkoutGUI;
+    private String nombre;
+    private String apellido;
+    private int cedula;
+
     /**
      * Constructores de la clase  dependiendo de que interfaz venga
      * 
@@ -113,16 +127,15 @@ public class CheckInGUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        nombre = new javax.swing.JTextField();
+        CampoNombre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        apellido = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        cedula = new javax.swing.JTextField();
+        CampoApellido = new javax.swing.JTextField();
+        CampoCedula = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        buscarres = new javax.swing.JButton();
+        buscar = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        CampoResultado = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -315,39 +328,29 @@ public class CheckInGUI extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
         jLabel1.setText("Apellido:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 70, -1));
-        getContentPane().add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 120, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 70, -1));
+        getContentPane().add(CampoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 120, -1));
 
         jLabel4.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
         jLabel4.setText("Cedula:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 70, -1));
-        getContentPane().add(apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 120, -1));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 490, 140));
-        getContentPane().add(cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, 130, -1));
+        getContentPane().add(CampoApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 120, -1));
+        getContentPane().add(CampoCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, 130, -1));
 
         jLabel8.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
         jLabel8.setText("Nombre:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 70, -1));
 
-        buscarres.setBackground(new java.awt.Color(0, 51, 102));
-        buscarres.setFont(new java.awt.Font("Malgun Gothic", 2, 12)); // NOI18N
-        buscarres.setForeground(new java.awt.Color(255, 255, 255));
-        buscarres.setText("buscar");
-        getContentPane().add(buscarres, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 160, -1));
+        buscar.setBackground(new java.awt.Color(0, 51, 102));
+        buscar.setFont(new java.awt.Font("Malgun Gothic", 2, 12)); // NOI18N
+        buscar.setForeground(new java.awt.Color(255, 255, 255));
+        buscar.setText("buscar");
+        buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, 160, -1));
 
         jLabel9.setFont(new java.awt.Font("Malgun Gothic", 1, 18)); // NOI18N
         jLabel9.setText("Check-In");
@@ -356,6 +359,15 @@ public class CheckInGUI extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Malgun Gothic Semilight", 2, 16)); // NOI18N
         jLabel10.setText("Introduzca los datos del cliente que desea check-in");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 480, -1));
+
+        CampoResultado.setEditable(false);
+        CampoResultado.setFocusable(false);
+        CampoResultado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampoResultadoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(CampoResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 490, 80));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -404,6 +416,53 @@ public class CheckInGUI extends javax.swing.JFrame {
         CheckOutGUI checkoutGUI = new CheckOutGUI(this);
     }//GEN-LAST:event_checkoutActionPerformed
 
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        CampoResultado.setText("");
+        nombre = CampoNombre.getText().toString();
+        apellido = CampoApellido.getText().toString();
+        String cedulaString = CampoCedula.getText().toString();
+
+        if (CampoNombre.getText().trim().isEmpty() || CampoApellido.getText().trim().isEmpty() || CampoCedula.getText().trim().isEmpty()) {
+            Messages.error("No pueden haber campos vacíos");}
+        else if (!contieneSoloLetras(nombre) || !contieneSoloLetras(apellido)){
+            Messages.error("Verifica que los datos introducidos sean correctos, solo se permiten caractéres del abecedario para el nombre y apellido.");}
+        else if (!contieneNumeroEnteroPositivo(cedulaString)){
+            Messages.error("Verifica que los datos introducidos sean correctos, cédula inválida.");} 
+        else{
+        HotelManager manager = Datos.getManager();
+        nombre = capitalize(nombre);
+        apellido = capitalize(apellido);
+        cedula = Integer.parseInt(cedulaString);
+        int checkin = manager.CheckIn(cedula);
+
+        if (checkin == 0) {
+            Messages.information("Usted no posee una reservación.");   
+        } else if (checkin == 1){
+            Messages.information("No hay habitaciones disponibles.");
+        }else if (checkin == 2){
+            Messages.information("Su CheckIn se ha realizado exitosamente!");
+            ListaDoble listaClientes =  manager.searchClient(nombre, apellido);
+            NodoDoble pointer =listaClientes.getHead();
+            while (pointer != null){
+            Client aux = (Client) pointer.getElement();
+            if (aux.getId()==cedula){
+                CampoResultado.setText("Bienvenido: " + aux.getF_name() + " " + aux.getL_name()+ ". Nro de su habitación: " + aux.getRoomNum());
+            }
+            pointer=pointer.getNext();
+            }
+            
+        }
+        }
+        
+        CampoCedula.setText("");
+        CampoNombre.setText("");
+        CampoApellido.setText("");
+    }//GEN-LAST:event_buscarActionPerformed
+
+    private void CampoResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoResultadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoResultadoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -443,11 +502,13 @@ public class CheckInGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Busqueda;
     private javax.swing.JButton Busquedares;
+    private javax.swing.JTextField CampoApellido;
+    private javax.swing.JTextField CampoCedula;
+    private javax.swing.JTextField CampoNombre;
+    private javax.swing.JTextField CampoResultado;
     private javax.swing.JButton Historial;
     private javax.swing.JButton Lobby;
-    private javax.swing.JTextField apellido;
-    private javax.swing.JButton buscarres;
-    private javax.swing.JTextField cedula;
+    private javax.swing.JButton buscar;
     private javax.swing.JButton checkin;
     private javax.swing.JButton checkout;
     private javax.swing.JLabel jLabel1;
@@ -465,8 +526,5 @@ public class CheckInGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
 }

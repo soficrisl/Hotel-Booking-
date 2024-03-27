@@ -46,6 +46,10 @@ public class Reservation {
     public String data(){
         return clientID + " - " + leadClient.getF_name() + " " + leadClient.getL_name() + " - "+ roomType; 
     }
+    
+    public String show(){
+        return "ID: " + clientID + ". Nombre y apellido: " + leadClient.getF_name() + " " + leadClient.getL_name() + ". Tipo de habitación: "+ roomType; 
+    }
    
    
 }

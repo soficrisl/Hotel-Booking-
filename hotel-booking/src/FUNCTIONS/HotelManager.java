@@ -59,7 +59,9 @@ public class HotelManager {
     }
     
     public ListaDoble roomHistory (int roomNum) {
-        Room found = (Room)roomTree.search(roomNum, roomTree.getRoot()); 
+        Room found = (Room)roomTree.search(roomNum, roomTree.getRoot());
+        if (found == null){
+            return null;}
         return found.getHistorial(); 
     }
     

@@ -37,7 +37,7 @@ public class ExcelManager {
         SBT tree1 = new SBT(); 
         String line;
         String reservas_csv = "";
-        String path = "test\\reservas.csv";
+        String path = "test/reservas.csv";
         File file = new File(path);
         try {
             if (!file.exists()) {
@@ -93,7 +93,7 @@ public class ExcelManager {
             SBT tree2 = new SBT(); 
             String line;
             String expresion_txt = "";
-            String path = "test\\habitaciones.csv";
+            String path = "test/habitaciones.csv";
             File file = new File(path);
             try {
                 if (!file.exists()) {
@@ -153,7 +153,7 @@ public class ExcelManager {
             Hashtable table = new Hashtable(); 
             String line;
             String expresion_txt = "";
-            String path = "test\\estado.csv";
+            String path = "test/estado.csv";
             File file = new File(path);
             try {
                 if (!file.exists()) {
@@ -225,7 +225,7 @@ public class ExcelManager {
             ListaDoble lista_historial =  new ListaDoble();
             String line;
             String expresion_txt = "";
-            String path = "test\\Historico.csv";
+            String path = "test/Historico.csv";
             File file = new File(path);
             try {
                 if (!file.exists()) {

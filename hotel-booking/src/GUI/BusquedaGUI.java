@@ -4,6 +4,14 @@
  */
 package GUI;
 
+import EDD.ListaDoble;
+import EDD.NodoDoble;
+import static FUNCTIONS.FuncionesGenerales.capitalize;
+import static FUNCTIONS.FuncionesGenerales.contieneSoloLetras;
+import FUNCTIONS.HotelManager;
+import FUNCTIONS.Messages;
+import OBJECTS.Client;
+
 /**
  *  Clase de la interfaz para Buscar Clientes
  *
@@ -17,6 +25,8 @@ public class BusquedaGUI extends javax.swing.JFrame {
     public static CheckInGUI checkinGUI;
     public static HistorialGUI historialGUI;
     public static CheckOutGUI checkoutGUI;
+    private String nombre;
+    private String apellido;
     /**
      * Constructores de la clase  dependiendo de que interfaz venga
      * 
@@ -112,14 +122,14 @@ public class BusquedaGUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        nombre = new javax.swing.JTextField();
+        CampoNombre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        apellido = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        CampoApellido = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         buscarclient = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        CampoResultado = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -313,27 +323,18 @@ public class BusquedaGUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
         jLabel1.setText("Apellido:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 60, -1));
-        getContentPane().add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 120, -1));
+
+        CampoNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampoNombreActionPerformed(evt);
+            }
+        });
+        getContentPane().add(CampoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 120, -1));
 
         jLabel4.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
         jLabel4.setText("Nombre:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 70, -1));
-        getContentPane().add(apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 120, -1));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 520, 160));
+        getContentPane().add(CampoApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 120, -1));
 
         jLabel8.setFont(new java.awt.Font("Malgun Gothic", 1, 18)); // NOI18N
         jLabel8.setText("Busqueda de Clientes:");
@@ -347,7 +348,20 @@ public class BusquedaGUI extends javax.swing.JFrame {
         buscarclient.setFont(new java.awt.Font("Malgun Gothic", 2, 12)); // NOI18N
         buscarclient.setForeground(new java.awt.Color(255, 255, 255));
         buscarclient.setText("buscar");
+        buscarclient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarclientActionPerformed(evt);
+            }
+        });
         getContentPane().add(buscarclient, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 160, -1));
+
+        CampoResultado.setEditable(false);
+        CampoResultado.setColumns(20);
+        CampoResultado.setRows(5);
+        CampoResultado.setFocusable(false);
+        jScrollPane1.setViewportView(CampoResultado);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 460, 60));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -400,6 +414,44 @@ public class BusquedaGUI extends javax.swing.JFrame {
         CheckOutGUI checkoutGUI = new CheckOutGUI(this);
     }//GEN-LAST:event_checkoutActionPerformed
 
+    private void buscarclientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarclientActionPerformed
+        CampoResultado.setText("");
+        nombre = CampoNombre.getText().toString();
+        apellido = CampoApellido.getText().toString();
+
+        if (CampoNombre.getText().trim().isEmpty() || CampoApellido.getText().trim().isEmpty()) {
+            Messages.error("No pueden haber campos vacíos");}
+        else if (!contieneSoloLetras(nombre) || !contieneSoloLetras(apellido)){
+            Messages.error("Verifica que los datos introducidos sean correctos, solo se permiten caractéres del abecedario.");}
+        else{
+        HotelManager manager = Datos.getManager();
+        nombre = capitalize(nombre);
+        apellido = capitalize(apellido);
+        ListaDoble resultadoBusqueda = manager.searchClient(nombre, apellido);
+
+        // Verificar si se encontraron resultados
+        if (resultadoBusqueda != null) {
+            Messages.information("Se han encontrado los datos exitosamente!");
+            NodoDoble pointer = resultadoBusqueda.getHead();
+            while (pointer != null){
+            Client cliente = (Client) pointer.getElement();
+            String info = "Nombre y apellido: " + cliente.getF_name() + " " + cliente.getL_name() + ". Número de habitación: " + cliente.getRoomNum();
+            CampoResultado.setText(CampoResultado.getText() + "\n" + info);
+            pointer = pointer.getNext();}
+            
+        } else {
+            Messages.information("No se encontraron clientes con este nombre y apellido.");
+        }
+        }
+        CampoNombre.setText("");
+        CampoApellido.setText("");
+        
+    }//GEN-LAST:event_buscarclientActionPerformed
+
+    private void CampoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoNombreActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -429,6 +481,10 @@ public class BusquedaGUI extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -441,9 +497,11 @@ public class BusquedaGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Busqueda;
     private javax.swing.JButton Busquedares;
+    private javax.swing.JTextField CampoApellido;
+    private javax.swing.JTextField CampoNombre;
+    private javax.swing.JTextArea CampoResultado;
     private javax.swing.JButton Historial;
     private javax.swing.JButton Lobby;
-    private javax.swing.JTextField apellido;
     private javax.swing.JButton buscarclient;
     private javax.swing.JButton checkin;
     private javax.swing.JButton checkout;
@@ -462,7 +520,5 @@ public class BusquedaGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
 }
