@@ -4,15 +4,6 @@
  */
 package GUI;
 
-import EDD.ListaDoble;
-import EDD.NodoDoble;
-import static FUNCTIONS.FuncionesGenerales.contieneNumeroEnteroPositivo;
-import static FUNCTIONS.FuncionesGenerales.contieneSoloLetras;
-import FUNCTIONS.HotelManager;
-import FUNCTIONS.Messages;
-import OBJECTS.Client;
-import OBJECTS.Reservation;
-
 /**
  *  Clase de la interfaz para Buscar Reservaciones
  *
@@ -25,7 +16,6 @@ public class BusquedaResGUI extends javax.swing.JFrame {
     public static CheckInGUI checkinGUI;
     public static HistorialGUI historialGUI;
     public static CheckOutGUI checkoutGUI;
-    private int cedula;
     /**
      * Constructores de la clase  dependiendo de que interfaz venga
      * 
@@ -121,11 +111,12 @@ public class BusquedaResGUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        CampoCedula = new javax.swing.JTextField();
+        cedula = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        buscar = new javax.swing.JButton();
-        CampoResultado = new javax.swing.JTextField();
+        buscarres = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -319,13 +310,22 @@ public class BusquedaResGUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
         jLabel1.setText("Cedula:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 60, -1));
+        getContentPane().add(cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 120, -1));
 
-        CampoCedula.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CampoCedulaActionPerformed(evt);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        });
-        getContentPane().add(CampoCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 120, -1));
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 510, 170));
 
         jLabel4.setFont(new java.awt.Font("Malgun Gothic", 1, 18)); // NOI18N
         jLabel4.setText("Busqueda Reservacion");
@@ -335,25 +335,11 @@ public class BusquedaResGUI extends javax.swing.JFrame {
         jLabel9.setText("Introduzca la cedula del cliente que desea buscar:");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 480, -1));
 
-        buscar.setBackground(new java.awt.Color(0, 51, 102));
-        buscar.setFont(new java.awt.Font("Malgun Gothic", 2, 12)); // NOI18N
-        buscar.setForeground(new java.awt.Color(255, 255, 255));
-        buscar.setText("buscar");
-        buscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, 160, -1));
-
-        CampoResultado.setEditable(false);
-        CampoResultado.setFocusable(false);
-        CampoResultado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CampoResultadoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(CampoResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 510, 100));
+        buscarres.setBackground(new java.awt.Color(0, 51, 102));
+        buscarres.setFont(new java.awt.Font("Malgun Gothic", 2, 12)); // NOI18N
+        buscarres.setForeground(new java.awt.Color(255, 255, 255));
+        buscarres.setText("buscar");
+        getContentPane().add(buscarres, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, 160, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -403,41 +389,6 @@ public class BusquedaResGUI extends javax.swing.JFrame {
         CheckOutGUI checkoutGUI = new CheckOutGUI(this);
     }//GEN-LAST:event_checkoutActionPerformed
 
-    private void CampoCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoCedulaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CampoCedulaActionPerformed
-
-    private void CampoResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoResultadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CampoResultadoActionPerformed
-
-    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
-        CampoResultado.setText("");
-        String cedulaString = CampoCedula.getText().toString();
-        
-
-        if (!contieneNumeroEnteroPositivo(cedulaString)){
-            Messages.error("Verifica que los datos introducidos sean correctos.");}
-        else{
-        HotelManager manager = Datos.getManager();
-        cedula = Integer.parseInt(cedulaString);
-        Reservation reserva = manager.searchReservation(cedula);
-        
-
-        // Verificar si se encontraron resultados
-        if (reserva != null) {
-            Messages.information("Se han encontrado los datos exitosamente!");
-            String info = reserva.data();
-            CampoResultado.setText(info);
-            
-        } else {
-            Messages.information("No se encontraron reservaciones con la césula proporcionada.");
-        }
-        }
-        CampoCedula.setText("");
-        
-    }//GEN-LAST:event_buscarActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -483,11 +434,10 @@ public class BusquedaResGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Busqueda;
     private javax.swing.JButton Busquedares;
-    private javax.swing.JTextField CampoCedula;
-    private javax.swing.JTextField CampoResultado;
     private javax.swing.JButton Historial;
     private javax.swing.JButton Lobby;
-    private javax.swing.JButton buscar;
+    private javax.swing.JButton buscarres;
+    private javax.swing.JTextField cedula;
     private javax.swing.JButton checkin;
     private javax.swing.JButton checkout;
     private javax.swing.JLabel jLabel1;
@@ -503,5 +453,7 @@ public class BusquedaResGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

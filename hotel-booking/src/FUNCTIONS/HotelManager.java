@@ -31,7 +31,6 @@ public class HotelManager {
         this.reserveTree = reserveTree;
     }
 
-
     public ListaDoble searchClient (String f_name, String l_name) {
         String key = f_name +" "+ l_name;
         ListaDoble match = clientsTable.search(key); 
