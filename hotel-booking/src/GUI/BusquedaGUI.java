@@ -129,7 +129,11 @@ public class BusquedaGUI extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         buscarclient = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
+        Habitaciones = new javax.swing.JTextArea();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
         CampoResultado = new javax.swing.JTextArea();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -331,9 +335,9 @@ public class BusquedaGUI extends javax.swing.JFrame {
         });
         getContentPane().add(CampoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 120, -1));
 
-        jLabel4.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
-        jLabel4.setText("Nombre:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 70, -1));
+        jLabel4.setFont(new java.awt.Font("Malgun Gothic", 3, 14)); // NOI18N
+        jLabel4.setText("Habitación");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 230, 180, -1));
         getContentPane().add(CampoApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 120, -1));
 
         jLabel8.setFont(new java.awt.Font("Malgun Gothic", 1, 18)); // NOI18N
@@ -342,7 +346,7 @@ public class BusquedaGUI extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Malgun Gothic Semilight", 2, 16)); // NOI18N
         jLabel9.setText("Introduzca el nombre y apellido del cliente que desea buscar:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 480, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 510, -1));
 
         buscarclient.setBackground(new java.awt.Color(0, 51, 102));
         buscarclient.setFont(new java.awt.Font("Malgun Gothic", 2, 12)); // NOI18N
@@ -355,13 +359,31 @@ public class BusquedaGUI extends javax.swing.JFrame {
         });
         getContentPane().add(buscarclient, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 160, -1));
 
+        Habitaciones.setEditable(false);
+        Habitaciones.setColumns(20);
+        Habitaciones.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 14)); // NOI18N
+        Habitaciones.setRows(5);
+        Habitaciones.setFocusable(false);
+        jScrollPane1.setViewportView(Habitaciones);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 250, 170, 120));
+
+        jLabel10.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
+        jLabel10.setText("Nombre:");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 70, -1));
+
         CampoResultado.setEditable(false);
         CampoResultado.setColumns(20);
+        CampoResultado.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 14)); // NOI18N
         CampoResultado.setRows(5);
         CampoResultado.setFocusable(false);
-        jScrollPane1.setViewportView(CampoResultado);
+        jScrollPane2.setViewportView(CampoResultado);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 460, 60));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 290, 120));
+
+        jLabel11.setFont(new java.awt.Font("Malgun Gothic", 3, 14)); // NOI18N
+        jLabel11.setText("Nombre y Apellido");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 180, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -416,8 +438,9 @@ public class BusquedaGUI extends javax.swing.JFrame {
 
     private void buscarclientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarclientActionPerformed
         CampoResultado.setText("");
-        nombre = CampoNombre.getText().toString();
-        apellido = CampoApellido.getText().toString();
+        Habitaciones.setText("");
+        nombre = CampoNombre.getText().toString().toLowerCase();
+        apellido = CampoApellido.getText().toString().toLowerCase();
 
         if (CampoNombre.getText().trim().isEmpty() || CampoApellido.getText().trim().isEmpty()) {
             Messages.error("No pueden haber campos vacíos");}
@@ -425,19 +448,22 @@ public class BusquedaGUI extends javax.swing.JFrame {
             Messages.error("Verifica que los datos introducidos sean correctos, solo se permiten caractéres del abecedario.");}
         else{
         HotelManager manager = Datos.getManager();
-        nombre = capitalize(nombre);
-        apellido = capitalize(apellido);
         ListaDoble resultadoBusqueda = manager.searchClient(nombre, apellido);
 
         // Verificar si se encontraron resultados
-        if (resultadoBusqueda != null) {
+        String info = "", info2 = ""; 
+        int aux = 1; 
+        if (resultadoBusqueda.getHead() != null) {
             Messages.information("Se han encontrado los datos exitosamente!");
             NodoDoble pointer = resultadoBusqueda.getHead();
             while (pointer != null){
-            Client cliente = (Client) pointer.getElement();
-            String info = "Nombre y apellido: " + cliente.getF_name() + " " + cliente.getL_name() + ". Número de habitación: " + cliente.getRoomNum();
-            CampoResultado.setText(CampoResultado.getText() + "\n" + info);
-            pointer = pointer.getNext();}
+                Client cliente = (Client) pointer.getElement();
+                info = aux + "- " + cliente.getFull_name();
+                info2 = aux + "- " + cliente.getRoomNum(); 
+                CampoResultado.setText(CampoResultado.getText() + info + "\n");
+                Habitaciones.setText(Habitaciones.getText() + info2 + "\n");
+
+                pointer = pointer.getNext();}
             
         } else {
             Messages.information("No se encontraron clientes con este nombre y apellido.");
@@ -500,12 +526,15 @@ public class BusquedaGUI extends javax.swing.JFrame {
     private javax.swing.JTextField CampoApellido;
     private javax.swing.JTextField CampoNombre;
     private javax.swing.JTextArea CampoResultado;
+    private javax.swing.JTextArea Habitaciones;
     private javax.swing.JButton Historial;
     private javax.swing.JButton Lobby;
     private javax.swing.JButton buscarclient;
     private javax.swing.JButton checkin;
     private javax.swing.JButton checkout;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -520,5 +549,6 @@ public class BusquedaGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

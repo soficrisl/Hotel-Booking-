@@ -37,7 +37,7 @@ public class ExcelManager {
         SBT tree1 = new SBT(); 
         String line;
         String reservas_csv = "";
-        String path = "test/reservas.csv";
+        String path = "test\\reservas.csv";
         File file = new File(path);
         try {
             if (!file.exists()) {
@@ -57,8 +57,8 @@ public class ExcelManager {
                         String[] datos = expresion_split[i].split(",");
 
                         int cedula_res = Integer.parseInt(datos[0].replaceAll("\\.", ""));
-                        String nombre_res = datos[1];
-                        String apellido_res = datos[2];
+                        String nombre_res = datos[1].toLowerCase();
+                        String apellido_res = datos[2].toLowerCase();
                         String email_res = datos[3];
                         String sexo_res = datos[4];
                         String telf_res = datos[6];
@@ -66,7 +66,7 @@ public class ExcelManager {
                         String fecha_llegada_res = datos[7];
                         String fecha_salida_res = datos[8];
  //    public Client(int id, String f_name, String l_name, String email, String gender, int roomNum, String cellphone, String arrival, String departure) {           
-                        Client client = new Client (cedula_res, nombre_res, apellido_res, email_res, sexo_res,-1,telf_res, fecha_llegada_res, fecha_salida_res); 
+                        Client client = new Client (cedula_res, nombre_res, apellido_res, email_res, sexo_res,-1,telf_res, fecha_llegada_res, fecha_salida_res, datos[1] + " "+ datos[2]); 
                         Reservation reserve = new Reservation(cedula_res, client, tipo_hab_res); 
                         tree1.insert(reserve, cedula_res);
 
@@ -93,7 +93,7 @@ public class ExcelManager {
             SBT tree2 = new SBT(); 
             String line;
             String expresion_txt = "";
-            String path = "test/habitaciones.csv";
+            String path = "test\\habitaciones.csv";
             File file = new File(path);
             try {
                 if (!file.exists()) {
@@ -153,7 +153,7 @@ public class ExcelManager {
             Hashtable table = new Hashtable(); 
             String line;
             String expresion_txt = "";
-            String path = "test/estado.csv";
+            String path = "test\\estado.csv";
             File file = new File(path);
             try {
                 if (!file.exists()) {
@@ -174,27 +174,27 @@ public class ExcelManager {
 
                             if (!datos[0].equalsIgnoreCase("")) {
                                 int num_hab = Integer.parseInt(datos[0]);
-                                String nombre_est = datos[1];
-                                String apellido_est = datos[2];
+                                String nombre_est = datos[1].toLowerCase();
+                                String apellido_est = datos[2].toLowerCase();
                                 String email_est = datos[3];
                                 String sexo_est = datos[4];
                                 String telf_est = datos[5];
                                 String fecha_llegada = datos[6];
                                 ultima_hab = num_hab;                              
-                                Client client = new Client (-1, nombre_est, apellido_est, email_est, sexo_est, num_hab, telf_est, fecha_llegada, ""); 
+                                Client client = new Client (-1, nombre_est, apellido_est, email_est, sexo_est, num_hab, telf_est, fecha_llegada, "",datos[1] + " "+ datos[2] ); 
                                 String key = nombre_est + " " + apellido_est; 
                                 table.insert(key, client);
                   
                             } else {
                                 if (i != 0) {
-                                    String nombre_est = datos[1];
-                                    String apellido_est = datos[2];
+                                    String nombre_est = datos[1].toLowerCase();
+                                    String apellido_est = datos[2].toLowerCase();
                                     String email_est = datos[3];
                                     String sexo_est = datos[4];
                                     String telf_est = datos[5];
                                     String fecha_llegada = datos[6];
                                     int hab = ultima_hab;                               
-                                    Client client = new Client (-1, nombre_est, apellido_est, email_est, sexo_est,hab, telf_est, fecha_llegada, ""); 
+                                    Client client = new Client (-1, nombre_est, apellido_est, email_est, sexo_est,hab, telf_est, fecha_llegada, "", datos[1] + " "+ datos[2]); 
                                     String key = nombre_est +" "+ apellido_est; 
                                     //System.out.println(key);
                                     table.insert(key, client);
@@ -225,7 +225,7 @@ public class ExcelManager {
             ListaDoble lista_historial =  new ListaDoble();
             String line;
             String expresion_txt = "";
-            String path = "test/Historico.csv";
+            String path = "test\\Historico.csv";
             File file = new File(path);
             try {
                 if (!file.exists()) {
@@ -243,8 +243,8 @@ public class ExcelManager {
                         for (int i = 0; i < expresion_split.length; i++) {
                             String[] datos = expresion_split[i].split(",");
                             int cedula_hist = Integer.parseInt(datos[0].replaceAll("\\.", ""));
-                            String nombre_hist = datos[1];
-                            String apellido_hist = datos[2];
+                            String nombre_hist = datos[1].toLowerCase();
+                            String apellido_hist = datos[2].toLowerCase();
                             String email_hist = datos[3];
                             String sexo_hist = datos[4];
                             String fecha_llegada_hist = datos[5];
@@ -258,7 +258,7 @@ public class ExcelManager {
 //                            System.out.println(fecha_llegada_hist);
 //                            System.out.println(num_hab_hist);
 //    public Client(int id, String f_name, String l_name, String email, String gender, int roomNum, String cellphone, String arrival, String departure) {                           
-                        Client cliente = new Client(cedula_hist, nombre_hist, apellido_hist, email_hist, sexo_hist, num_hab_hist, "No data", fecha_llegada_hist, "No data");
+                        Client cliente = new Client(cedula_hist, nombre_hist, apellido_hist, email_hist, sexo_hist, num_hab_hist, "No data", fecha_llegada_hist, "No data", datos[1] + " "+ datos[2]);
                         lista_historial.insertFinal(cliente);
                         }
 

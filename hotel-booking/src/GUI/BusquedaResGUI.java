@@ -125,7 +125,8 @@ public class BusquedaResGUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         buscar = new javax.swing.JButton();
-        CampoResultado = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        CampoResultado = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -346,14 +347,11 @@ public class BusquedaResGUI extends javax.swing.JFrame {
         });
         getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, 160, -1));
 
-        CampoResultado.setEditable(false);
-        CampoResultado.setFocusable(false);
-        CampoResultado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CampoResultadoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(CampoResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 520, 80));
+        CampoResultado.setColumns(20);
+        CampoResultado.setRows(5);
+        jScrollPane1.setViewportView(CampoResultado);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 510, 100));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -435,10 +433,6 @@ public class BusquedaResGUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_buscarActionPerformed
 
-    private void CampoResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoResultadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CampoResultadoActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -493,7 +487,7 @@ public class BusquedaResGUI extends javax.swing.JFrame {
     private javax.swing.JButton Busqueda;
     private javax.swing.JButton Busquedares;
     private javax.swing.JTextField CampoCedula;
-    private javax.swing.JTextField CampoResultado;
+    private javax.swing.JTextArea CampoResultado;
     private javax.swing.JButton Historial;
     private javax.swing.JButton Lobby;
     private javax.swing.JButton buscar;
@@ -512,5 +506,6 @@ public class BusquedaResGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

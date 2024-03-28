@@ -46,6 +46,7 @@ public class HistorialGUI extends javax.swing.JFrame {
         this.setSize(750,500);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.status.setVisible(false);
     }
     
     //Desde BusquedaResGUI
@@ -57,6 +58,7 @@ public class HistorialGUI extends javax.swing.JFrame {
         this.setSize(750,500);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.status.setVisible(false);
     }
     
     //Desde GUIinicial
@@ -68,6 +70,7 @@ public class HistorialGUI extends javax.swing.JFrame {
         this.setSize(750,500);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.status.setVisible(false);
     }
     
     //Desde BusquedaResGUI
@@ -79,6 +82,7 @@ public class HistorialGUI extends javax.swing.JFrame {
         this.setSize(750,500);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.status.setVisible(false);
     }
     
     //Desde checkinGUI
@@ -90,6 +94,7 @@ public class HistorialGUI extends javax.swing.JFrame {
         this.setSize(750,500);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.status.setVisible(false);
     }
     
     public HistorialGUI() {
@@ -98,6 +103,7 @@ public class HistorialGUI extends javax.swing.JFrame {
         this.setSize(750,500);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.status.setVisible(false);
     }
 
     /**
@@ -127,11 +133,14 @@ public class HistorialGUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         CampoNumhab = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         buscar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         CampoResultado = new javax.swing.JTextArea();
+        jLabel8 = new javax.swing.JLabel();
+        status = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -322,9 +331,9 @@ public class HistorialGUI extends javax.swing.JFrame {
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, -20, 650, 100));
 
-        jLabel1.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
-        jLabel1.setText("Numero de Habitación:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 160, 30));
+        jLabel1.setFont(new java.awt.Font("Malgun Gothic", 3, 14)); // NOI18N
+        jLabel1.setText("Personas hospedadas en la habitación");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 330, 30));
 
         CampoNumhab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -332,10 +341,6 @@ public class HistorialGUI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(CampoNumhab, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 150, 20));
-
-        jLabel4.setFont(new java.awt.Font("Malgun Gothic", 1, 18)); // NOI18N
-        jLabel4.setText("Historial");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Malgun Gothic Semilight", 2, 16)); // NOI18N
         jLabel9.setText("Introduzca el numero de habitación que desea buscar:");
@@ -356,7 +361,23 @@ public class HistorialGUI extends javax.swing.JFrame {
         CampoResultado.setRows(5);
         jScrollPane2.setViewportView(CampoResultado);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 500, 200));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 500, 150));
+
+        jLabel8.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
+        jLabel8.setText("Numero de Habitación:");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 160, 30));
+
+        status.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 14)); // NOI18N
+        status.setText("jLabel10");
+        getContentPane().add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, 150, 30));
+
+        jLabel11.setFont(new java.awt.Font("Malgun Gothic", 1, 18)); // NOI18N
+        jLabel11.setText("Historial");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
+        jLabel4.setText("Estado de la habitación: ");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 230, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -408,6 +429,7 @@ public class HistorialGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_checkoutActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        this.status.setVisible(false);
         CampoResultado.setText("");
         String numhabString = CampoNumhab.getText().toString();
        
@@ -424,6 +446,13 @@ public class HistorialGUI extends javax.swing.JFrame {
         // Verificar si se encontraron resultados
         if (historial != null) {
             Messages.information("Se han encontrado los datos exitosamente!");
+            Room room = manager.searchRoom(numhab);
+            if (room.isOcupied()) {
+                this.status.setText("Ocupado");
+            }else {
+                this.status.setText("Libre");
+            }
+            this.status.setVisible(true);
             NodoDoble pointer = historial.getHead();
             if (pointer==null){
                 Messages.information("No hay historial de clientes en esta habitación.");
@@ -512,12 +541,14 @@ public class HistorialGUI extends javax.swing.JFrame {
     private javax.swing.JButton checkin;
     private javax.swing.JButton checkout;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -525,5 +556,6 @@ public class HistorialGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel status;
     // End of variables declaration//GEN-END:variables
 }

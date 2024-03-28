@@ -52,12 +52,16 @@ public class SBT {
         if (isEmpty()){
             return null; 
         } 
-        while(nodo.getRightSon().getRightSon()!= null){
-            nodo = nodo.getRightSon(); 
+        if (nodo.getRightSon() != null) {
+            while(nodo.getRightSon().getRightSon()!= null){
+                nodo = nodo.getRightSon();
+                }
+            NodoTree temp = nodo.getRightSon(); 
+            nodo.setRightSon(null);
+            return temp;
+        } else {
+            return nodo; 
         }
-        NodoTree temp = nodo.getRightSon(); 
-        nodo.setRightSon(null);
-        return temp; 
     }
     
     public void insert(Object element, int key){

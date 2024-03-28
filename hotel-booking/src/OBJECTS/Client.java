@@ -18,8 +18,9 @@ public class Client {
     String cellphone; 
     String arrival; 
     String departure; 
+    String full_name; 
 
-    public Client(int id, String f_name, String l_name, String email, String gender, int roomNum, String cellphone, String arrival, String departure) {
+    public Client(int id, String f_name, String l_name, String email, String gender, int roomNum, String cellphone, String arrival, String departure, String name) {
         this.id = id;
         this.f_name = f_name;
         this.l_name = l_name;
@@ -29,6 +30,7 @@ public class Client {
         this.cellphone = cellphone;
         this.arrival = arrival;
         this.departure = departure;
+        this.full_name = name; 
     }
 
     public int getId() {
@@ -110,6 +112,16 @@ public class Client {
     public String show(){
         return "ID: " + id + ". Nombre: y apellido: " + f_name +  " " + l_name +  ". Correo: " + email +  ". Género: " + gender + ". Nro de habitación: " + roomNum + ". Telf.: " + cellphone +  ". Llegada: " + arrival +  ". Salida: " + departure; 
     }
+
+    public String getFull_name() {
+        return full_name;
+    }
+
+    public void setFull_name(String full_name) {
+        this.full_name = full_name;
+    }
+    
+    
     
 }
 

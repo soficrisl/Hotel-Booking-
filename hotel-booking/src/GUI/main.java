@@ -13,7 +13,6 @@ package GUI;
     public static void main(String[] args) {
         // Cargar los datos
         Datos.cargarDatos();
-
         GUI interfaz1 = new GUI();
         interfaz1.setVisible(true);
     }
