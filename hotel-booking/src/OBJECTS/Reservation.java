@@ -48,7 +48,7 @@ public class Reservation {
     }
     
     public String show(){
-        return "ID: " + clientID + ". Nombre y apellido: " + leadClient.getF_name() + " " + leadClient.getL_name() + ". Tipo de habitación: "+ roomType; 
+        return "ID: " + clientID + ". Nombre y apellido: " + leadClient.getFull_name() +  ". Tipo de habitación: "+ roomType + ". Email: " + leadClient.getEmail() + ". Genero: " + leadClient.getGender() + ". Telefono:" + leadClient.getCellphone() + ". Llegada:" + leadClient.getArrival() + ". Salida: " + leadClient.getDeparture(); 
     }
    
    

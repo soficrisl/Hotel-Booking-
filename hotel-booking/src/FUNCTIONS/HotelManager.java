@@ -39,18 +39,13 @@ public class HotelManager {
         while (pointer!= null){
             String nombre = ((Client)pointer.getElement()).getF_name(); 
             String apellido = ((Client)pointer.getElement()).getL_name(); 
-            String key2 = nombre + " " + apellido; 
             if (!nombre.equalsIgnoreCase(f_name) || !apellido.equalsIgnoreCase(l_name)) {
                 match.deleteInIndex(aux); 
             }
             aux++; 
             pointer = pointer.getNext();      
         }
-        if (match.getHead() != null) {
-           return match;
-        } else {
-            return null; 
-        } 
+      return match;  
     }
     
     public Reservation searchReservation (int id) {
@@ -144,6 +139,10 @@ public class HotelManager {
         room.setOcupied(false);
         roomTree.setNodoElement(numRoom, room); 
         return 1; 
+    }
+    
+    public Room searchRoom (int numHab) {
+        return (Room)roomTree.search(numHab, roomTree.getRoot());
     }
 }
 

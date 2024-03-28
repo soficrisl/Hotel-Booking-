@@ -490,8 +490,8 @@ public class CheckOutGUI extends javax.swing.JFrame {
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         CampoResultado.setText("");
-        nombre = CampoNombre.getText().toString();
-        apellido = CampoApellido.getText().toString();
+        nombre = CampoNombre.getText().toString().toLowerCase();
+        apellido = CampoApellido.getText().toString().toLowerCase();
 
         if (CampoNombre.getText().trim().isEmpty() || CampoApellido.getText().trim().isEmpty()) {
             Messages.error("No pueden haber campos vacíos");}
@@ -499,8 +499,6 @@ public class CheckOutGUI extends javax.swing.JFrame {
             Messages.error("Verifica que los datos introducidos sean correctos, solo se permiten caractéres del abecedario.");}
         else{
         HotelManager manager = Datos.getManager();
-        nombre = capitalize(nombre);
-        apellido = capitalize(apellido);
         listaClientes = manager.searchClient(nombre, apellido);
 
         // Verificar si se encontraron resultados
@@ -510,7 +508,7 @@ public class CheckOutGUI extends javax.swing.JFrame {
             int contador = 0;
             while (pointer != null){
             Client cliente = (Client) pointer.getElement();
-            String info = contador+1 + ".     Nombre y apellido: " + cliente.getF_name() + " " + cliente.getL_name() + ". Número de habitación: " + cliente.getRoomNum() + ". Correo: " + cliente.getEmail() + ". Telf.: " + cliente.getCellphone();
+            String info = contador+1 + ".     Nombre y apellido: " + capitalize(cliente.getF_name()) + " " + capitalize(cliente.getL_name()) + ". Número de habitación: " + cliente.getRoomNum() + ". Correo: " + cliente.getEmail() + ". Telf.: " + cliente.getCellphone();
             CampoResultado.setText(CampoResultado.getText() + "\n" + info);
             pointer = pointer.getNext();
             contador++;}
