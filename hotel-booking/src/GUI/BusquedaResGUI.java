@@ -127,6 +127,7 @@ public class BusquedaResGUI extends javax.swing.JFrame {
         buscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         CampoResultado = new javax.swing.JTextArea();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -319,22 +320,22 @@ public class BusquedaResGUI extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
         jLabel1.setText("Cedula:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 60, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 60, -1));
 
         CampoCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CampoCedulaActionPerformed(evt);
             }
         });
-        getContentPane().add(CampoCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 120, -1));
+        getContentPane().add(CampoCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, 120, -1));
 
-        jLabel4.setFont(new java.awt.Font("Malgun Gothic", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Malgun Gothic", 3, 32)); // NOI18N
         jLabel4.setText("Busqueda Reservacion");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Malgun Gothic Semilight", 2, 16)); // NOI18N
         jLabel9.setText("Introduzca la cedula del cliente que desea buscar:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 480, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 480, -1));
 
         buscar.setBackground(new java.awt.Color(0, 51, 102));
         buscar.setFont(new java.awt.Font("Malgun Gothic", 2, 12)); // NOI18N
@@ -345,13 +346,18 @@ public class BusquedaResGUI extends javax.swing.JFrame {
                 buscarActionPerformed(evt);
             }
         });
-        getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, 160, -1));
+        getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 280, 160, -1));
 
         CampoResultado.setColumns(20);
         CampoResultado.setRows(5);
         jScrollPane1.setViewportView(CampoResultado);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 510, 100));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 510, 100));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/L_141622_hotel-ihg-creta-piscina-terraza (1).jpg"))); // NOI18N
+        jLabel8.setText("jLabel8");
+        jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 102), 5));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 130, -1, 120));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -500,6 +506,7 @@ public class BusquedaResGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

@@ -22,8 +22,8 @@ public class Datos {
         roomTree = excel.uptadeRooms(roomTree, table); 
         SBT reserveTree = excel.Leer_reservas();
         manager = new HotelManager(table, roomTree, reserveTree);
-        reserveTree.inOrder(reserveTree.getRoot());
-        //reserveTree.delete(12922153);
+        //reserveTree.inOrder(reserveTree.getRoot());
+        reserveTree.delete(12922153);
  
     }
 
