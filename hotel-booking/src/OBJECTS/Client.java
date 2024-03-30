@@ -9,52 +9,52 @@ package OBJECTS;
  * @author cristiandresgp
  */
 public class Client {
-    private int cedula;
-    private String nombre;
-    private String apellido;
-    private String email;
-    private String genero;
-    private String numero;
-    private int roomNum;
-    private boolean state; 
-    private String entrada;
-    private String salida;
+    int id; 
+    String f_name; 
+    String l_name; 
+    String email; 
+    String gender; 
+    int roomNum; 
+    String cellphone; 
+    String arrival; 
+    String departure; 
+    String full_name; 
 
-    public Client(int cedula, String nombre, String apellido, String email, String genero, String numero, int roomNum, boolean state, String entrada, String salida) {
-        this.cedula = cedula;
-        this.nombre = nombre;
-        this.apellido = apellido;
+    public Client(int id, String f_name, String l_name, String email, String gender, int roomNum, String cellphone, String arrival, String departure, String name) {
+        this.id = id;
+        this.f_name = f_name;
+        this.l_name = l_name;
         this.email = email;
-        this.genero = genero;
-        this.numero = numero;
+        this.gender = gender;
         this.roomNum = roomNum;
-        this.state = state;
-        this.entrada = entrada;
-        this.salida = salida;
+        this.cellphone = cellphone;
+        this.arrival = arrival;
+        this.departure = departure;
+        this.full_name = name; 
     }
 
-    public int getCedula() {
-        return cedula;
+    public int getId() {
+        return id;
     }
 
-    public void setCedula(int cedula) {
-        this.cedula = cedula;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getF_name() {
+        return f_name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setF_name(String f_name) {
+        this.f_name = f_name;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getL_name() {
+        return l_name;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setL_name(String l_name) {
+        this.l_name = l_name;
     }
 
     public String getEmail() {
@@ -65,20 +65,12 @@ public class Client {
         this.email = email;
     }
 
-    public String getGenero() {
-        return genero;
+    public String getGender() {
+        return gender;
     }
 
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public int getRoomNum() {
@@ -89,29 +81,47 @@ public class Client {
         this.roomNum = roomNum;
     }
 
-    public boolean isState() {
-        return state;
+    public String getCellphone() {
+        return cellphone;
     }
 
-    public void setState(boolean state) {
-        this.state = state;
+    public void setCellphone(String cellphone) {
+        this.cellphone = cellphone;
     }
 
-    public String getEntrada() {
-        return entrada;
+    public String getArrival() {
+        return arrival;
     }
 
-    public void setEntrada(String entrada) {
-        this.entrada = entrada;
+    public void setArrival(String arrival) {
+        this.arrival = arrival;
     }
 
-    public String getSalida() {
-        return salida;
+    public String getDeparture() {
+        return departure;
     }
 
-    public void setSalida(String salida) {
-        this.salida = salida;
+    public void setDeparture(String departure) {
+        this.departure = departure;
+    }
+    
+    public String data (){
+        return id + " - " + f_name +  " - " + l_name +  " - " + email +  " - " + gender + " - " + roomNum + " - " + cellphone +  " - " + arrival +  " - " + departure; 
+    }
+    
+    public String show(){
+        return "ID: " + id + ". Nombre: y apellido: " + f_name +  " " + l_name +  ". Correo: " + email +  ". Género: " + gender + ". Nro de habitación: " + roomNum + ". Telf.: " + cellphone +  ". Llegada: " + arrival +  ". Salida: " + departure; 
     }
 
-  
+    public String getFull_name() {
+        return full_name;
+    }
+
+    public void setFull_name(String full_name) {
+        this.full_name = full_name;
+    }
+    
+    
+    
 }
+

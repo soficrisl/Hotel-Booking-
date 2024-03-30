@@ -4,31 +4,18 @@
  */
 package GUI;
 
-import EDD.ListaDoble;
-import EDD.SBT;
-import FUNCTIONS.ExcelManager;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  *
  * @author User
  */
-public class main {
-
-    /**
-     * @param args the command line arguments
-     */
+    public class main {
     public static void main(String[] args) {
-        ListaDoble lista_historial =  new ListaDoble();
-        ExcelManager excel = new ExcelManager();
-        excel.Leer_Historial(lista_historial);
-        excel.Leer_habitaciones();
-        excel.Leer_Estado();
-        excel.Leer_reservas();
-        
-        
+        // Cargar los datos
+        Datos.cargarDatos();
         GUI interfaz1 = new GUI();
         interfaz1.setVisible(true);
     }
 }
+
+

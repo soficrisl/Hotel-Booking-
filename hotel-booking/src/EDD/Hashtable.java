@@ -8,11 +8,11 @@ package EDD;
  *
  * @author Sofia
  */
-public class Hastable {
+public class Hashtable {
     private ListaDoble[] hastable; 
     
-    public Hastable() {
-        this.hastable = new ListaDoble[97];
+    public Hashtable() {
+        this.hastable = new ListaDoble[1259];
         for (int i = 0; i < this.hastable.length; i++) {
             this.hastable[i] = new ListaDoble(); 
         }
@@ -49,15 +49,13 @@ public class Hastable {
         this.hastable[index].insertBegin(element);
     }
     
-    public Object delete(String str, Object element){
+    public void delete(String str, Object element){
         int index1 = hashFunction(str);
         if (this.hastable[index1].getHead() != null){
             int index2 = this.hastable[index1].searchIndex(element);
-            Object deleted = this.hastable[index1]; 
             this.hastable[index1].deleteInIndex(index2); 
-            return deleted; 
+           
         }
-        return null;  
     }
     
     public ListaDoble search(String str) {
