@@ -199,6 +199,7 @@ public class ExcelManager {
                                 Client client = new Client (-1, nombre_est, apellido_est, email_est, sexo_est, num_hab, telf_est, fecha_llegada, "",datos[1] + " "+ datos[2] ); 
                                 String key = nombre_est + " " + apellido_est; 
                                 table.insert(key, client);
+                                //System.out.println(ultima_hab);
                             } else {
                                 if (i != 0) {
                                     String nombre_est = datos[1].toLowerCase();
@@ -228,7 +229,9 @@ public class ExcelManager {
                                     Client client = new Client (-1, nombre_est, apellido_est, email_est, sexo_est,hab, telf_est, fecha_llegada, "", datos[1] + " "+ datos[2]); 
                                     String key = nombre_est +" "+ apellido_est; 
                                     //System.out.println(key);
-                                    table.insert(key, client);                                    
+                                    table.insert(key, client);
+                                    //System.out.println(hab);
+                                   
                                 }
 
                             }

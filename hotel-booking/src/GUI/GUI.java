@@ -114,6 +114,7 @@ public class GUI extends javax.swing.JFrame {
         bienvenidos = new javax.swing.JLabel();
         HBmain = new javax.swing.JLabel();
         mainimage = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -304,16 +305,20 @@ public class GUI extends javax.swing.JFrame {
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, -20, 650, 100));
 
-        bienvenidos.setFont(new java.awt.Font("Segoe UI Emoji", 2, 12)); // NOI18N
+        bienvenidos.setFont(new java.awt.Font("Segoe UI Emoji", 2, 16)); // NOI18N
         bienvenidos.setText("Bienvenidos a...");
-        getContentPane().add(bienvenidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, -1, -1));
+        getContentPane().add(bienvenidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, -1, -1));
 
-        HBmain.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        HBmain.setFont(new java.awt.Font("Segoe UI", 3, 40)); // NOI18N
+        HBmain.setForeground(new java.awt.Color(0, 0, 51));
         HBmain.setText("Hotel Booking");
-        getContentPane().add(HBmain, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, -1, -1));
+        getContentPane().add(HBmain, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, -1, -1));
 
         mainimage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Captura de pantalla 2024-03-07 222740 (4).jpg"))); // NOI18N
         getContentPane().add(mainimage, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 610, 400));
+
+        jLabel4.setText("jLabel4");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -416,6 +421,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;

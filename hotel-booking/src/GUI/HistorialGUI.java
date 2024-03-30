@@ -141,6 +141,8 @@ public class HistorialGUI extends javax.swing.JFrame {
         status = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -333,18 +335,18 @@ public class HistorialGUI extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Malgun Gothic", 3, 14)); // NOI18N
         jLabel1.setText("Personas hospedadas en la habitación");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 330, 30));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 330, 30));
 
         CampoNumhab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CampoNumhabActionPerformed(evt);
             }
         });
-        getContentPane().add(CampoNumhab, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 150, 20));
+        getContentPane().add(CampoNumhab, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 150, 20));
 
         jLabel9.setFont(new java.awt.Font("Malgun Gothic Semilight", 2, 16)); // NOI18N
         jLabel9.setText("Introduzca el numero de habitación que desea buscar:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 480, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 480, -1));
 
         buscar.setBackground(new java.awt.Color(0, 51, 102));
         buscar.setFont(new java.awt.Font("Malgun Gothic", 2, 12)); // NOI18N
@@ -355,29 +357,35 @@ public class HistorialGUI extends javax.swing.JFrame {
                 buscarActionPerformed(evt);
             }
         });
-        getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, 160, -1));
+        getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 210, 160, -1));
 
         CampoResultado.setColumns(20);
         CampoResultado.setRows(5);
         jScrollPane2.setViewportView(CampoResultado);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 500, 150));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 500, 100));
 
         jLabel8.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
         jLabel8.setText("Numero de Habitación:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 160, 30));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 160, 20));
 
         status.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 14)); // NOI18N
-        status.setText("jLabel10");
-        getContentPane().add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, 150, 30));
+        status.setText("-");
+        getContentPane().add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 150, 30));
 
-        jLabel11.setFont(new java.awt.Font("Malgun Gothic", 1, 18)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Malgun Gothic", 3, 36)); // NOI18N
         jLabel11.setText("Historial");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 180, -1));
 
         jLabel4.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
         jLabel4.setText("Estado de la habitación: ");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 230, 30));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 230, 30));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Captura de pantalla 2024-03-29 232753.png"))); // NOI18N
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 540, 290));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/mett-hotel-beach-resort (1) (1).jpg"))); // NOI18N
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -541,7 +549,9 @@ public class HistorialGUI extends javax.swing.JFrame {
     private javax.swing.JButton checkin;
     private javax.swing.JButton checkout;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

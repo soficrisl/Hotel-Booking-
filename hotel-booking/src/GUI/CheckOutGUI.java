@@ -142,6 +142,7 @@ public class CheckOutGUI extends javax.swing.JFrame {
         apellido2 = new javax.swing.JLabel();
         CampoApellido = new javax.swing.JTextField();
         buscar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -347,27 +348,27 @@ public class CheckOutGUI extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
         jLabel4.setText("Nombre:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 80, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 80, -1));
 
         CampoOpcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CampoOpcionActionPerformed(evt);
             }
         });
-        getContentPane().add(CampoOpcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, 130, -1));
+        getContentPane().add(CampoOpcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 350, 130, -1));
 
-        jLabel8.setFont(new java.awt.Font("Malgun Gothic", 1, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Malgun Gothic", 3, 36)); // NOI18N
         jLabel8.setText("Check-Out");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 210, -1));
 
-        jLabel9.setFont(new java.awt.Font("Malgun Gothic Semilight", 2, 16)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Malgun Gothic Semilight", 2, 14)); // NOI18N
         jLabel9.setText("Introduzca los datos del cliente que desea check-out:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 480, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 480, -1));
 
         apellido1.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
         apellido1.setText("Opción: ");
-        getContentPane().add(apellido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 70, -1));
-        getContentPane().add(CampoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 120, -1));
+        getContentPane().add(apellido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, 70, -1));
+        getContentPane().add(CampoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 120, -1));
 
         botonCheckout.setBackground(new java.awt.Color(0, 51, 102));
         botonCheckout.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
@@ -378,19 +379,19 @@ public class CheckOutGUI extends javax.swing.JFrame {
                 botonCheckoutActionPerformed(evt);
             }
         });
-        getContentPane().add(botonCheckout, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, 200, 40));
+        getContentPane().add(botonCheckout, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 230, 30));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 300, -1, -1));
 
         CampoResultado.setColumns(20);
         CampoResultado.setRows(5);
         jScrollPane2.setViewportView(CampoResultado);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, 490, -1));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 310, -1));
 
         apellido2.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
         apellido2.setText("Apellido:");
-        getContentPane().add(apellido2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, 70, -1));
-        getContentPane().add(CampoApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, 130, -1));
+        getContentPane().add(apellido2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, 70, -1));
+        getContentPane().add(CampoApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 130, -1));
 
         buscar.setBackground(new java.awt.Color(0, 51, 102));
         buscar.setFont(new java.awt.Font("Malgun Gothic", 2, 12)); // NOI18N
@@ -401,7 +402,12 @@ public class CheckOutGUI extends javax.swing.JFrame {
                 buscarActionPerformed(evt);
             }
         });
-        getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 160, -1));
+        getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 160, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/pool (1).jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 153), 10, true));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, 380, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -581,6 +587,7 @@ public class CheckOutGUI extends javax.swing.JFrame {
     private javax.swing.JButton buscar;
     private javax.swing.JButton checkin;
     private javax.swing.JButton checkout;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

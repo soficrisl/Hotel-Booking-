@@ -134,6 +134,7 @@ public class BusquedaGUI extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         CampoResultado = new javax.swing.JTextArea();
         jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -326,27 +327,27 @@ public class BusquedaGUI extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
         jLabel1.setText("Apellido:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 60, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, 60, -1));
 
         CampoNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CampoNombreActionPerformed(evt);
             }
         });
-        getContentPane().add(CampoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 120, -1));
+        getContentPane().add(CampoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 120, -1));
 
         jLabel4.setFont(new java.awt.Font("Malgun Gothic", 3, 14)); // NOI18N
         jLabel4.setText("Habitación");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 230, 180, -1));
-        getContentPane().add(CampoApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 120, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 240, 180, -1));
+        getContentPane().add(CampoApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, 120, -1));
 
-        jLabel8.setFont(new java.awt.Font("Malgun Gothic", 1, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Malgun Gothic", 3, 30)); // NOI18N
         jLabel8.setText("Busqueda de Clientes:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 340, 50));
 
         jLabel9.setFont(new java.awt.Font("Malgun Gothic Semilight", 2, 16)); // NOI18N
         jLabel9.setText("Introduzca el nombre y apellido del cliente que desea buscar:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 510, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 510, -1));
 
         buscarclient.setBackground(new java.awt.Color(0, 51, 102));
         buscarclient.setFont(new java.awt.Font("Malgun Gothic", 2, 12)); // NOI18N
@@ -357,7 +358,7 @@ public class BusquedaGUI extends javax.swing.JFrame {
                 buscarclientActionPerformed(evt);
             }
         });
-        getContentPane().add(buscarclient, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 160, -1));
+        getContentPane().add(buscarclient, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 200, 160, -1));
 
         Habitaciones.setEditable(false);
         Habitaciones.setColumns(20);
@@ -366,11 +367,11 @@ public class BusquedaGUI extends javax.swing.JFrame {
         Habitaciones.setFocusable(false);
         jScrollPane1.setViewportView(Habitaciones);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 250, 170, 120));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, 170, 120));
 
         jLabel10.setFont(new java.awt.Font("Malgun Gothic", 2, 14)); // NOI18N
         jLabel10.setText("Nombre:");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 70, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 70, -1));
 
         CampoResultado.setEditable(false);
         CampoResultado.setColumns(20);
@@ -379,11 +380,15 @@ public class BusquedaGUI extends javax.swing.JFrame {
         CampoResultado.setFocusable(false);
         jScrollPane2.setViewportView(CampoResultado);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 290, 120));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 290, 120));
 
         jLabel11.setFont(new java.awt.Font("Malgun Gothic", 3, 14)); // NOI18N
         jLabel11.setText("Nombre y Apellido");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 180, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 180, -1));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/xxl_153138416 (1)_1.jpg"))); // NOI18N
+        jLabel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153), 7));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 140, -1, 270));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -535,6 +540,7 @@ public class BusquedaGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
