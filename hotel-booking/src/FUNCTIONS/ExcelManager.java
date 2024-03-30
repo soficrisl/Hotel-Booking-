@@ -180,11 +180,25 @@ public class ExcelManager {
                                 String sexo_est = datos[4];
                                 String telf_est = datos[5];
                                 String fecha_llegada = datos[6];
+                                ultima_hab = num_hab;
+                                
+                                System.out.println(nombre_est);
+//                                System.out.println(apellido_est);
+//                                System.out.println(email_est);
+//                                System.out.println(sexo_est);
+//                                System.out.println(telf_est);
+//                                System.out.println(fecha_llegada);
+                                System.out.println(num_hab);
+//                                
+                                //HotelCard card = new HotelCard(num_hab_hist, fecha_llegada_hist, null, 1);
+                                //Client cliente = new Cliente(cedula_est, nombre_est, apellido_est, email_est, sexo_est, 0, card);
+
+                                //table.Agregar(cliente);
+                                
                                 ultima_hab = num_hab;                              
                                 Client client = new Client (-1, nombre_est, apellido_est, email_est, sexo_est, num_hab, telf_est, fecha_llegada, "",datos[1] + " "+ datos[2] ); 
                                 String key = nombre_est + " " + apellido_est; 
                                 table.insert(key, client);
-                  
                             } else {
                                 if (i != 0) {
                                     String nombre_est = datos[1].toLowerCase();
@@ -192,13 +206,29 @@ public class ExcelManager {
                                     String email_est = datos[3];
                                     String sexo_est = datos[4];
                                     String telf_est = datos[5];
+
+
+                                    int hab = ultima_hab;
+                                    //HotelCard card = new HotelCard(hab, fecha_llegada_hist, null, 1);
+                                    //Client cliente = new Cliente(cedula_est, nombre_est, apellido_est, email_est, sexo_est, 0, card);
+
+                                    //table.Agregar(cliente);S
+//                                  
+
+                                    System.out.println(nombre_est);
+                                    System.out.println(hab);
+//                                    System.out.println(apellido_est);
+//                                    System.out.println(email_est);
+//                                    System.out.println(sexo_est);
+//                                    System.out.println(telf_est);
+//                                    
+
                                     String fecha_llegada = datos[6];
                                     int hab = ultima_hab;                               
                                     Client client = new Client (-1, nombre_est, apellido_est, email_est, sexo_est,hab, telf_est, fecha_llegada, "", datos[1] + " "+ datos[2]); 
                                     String key = nombre_est +" "+ apellido_est; 
                                     //System.out.println(key);
-                                    table.insert(key, client);
-                                    
+                                    table.insert(key, client);                                    
                                 }
 
                             }
