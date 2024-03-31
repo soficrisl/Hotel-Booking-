@@ -513,14 +513,13 @@ public class CheckOutGUI extends javax.swing.JFrame {
             NodoDoble pointer = listaClientes.getHead();
             int contador = 0;
             while (pointer != null){
-            Client cliente = (Client) pointer.getElement();
-            String info = contador+1 + ".     Nombre y apellido: " + capitalize(cliente.getF_name()) + " " + capitalize(cliente.getL_name()) + ". Número de habitación: " + cliente.getRoomNum() + ". Correo: " + cliente.getEmail() + ". Telf.: " + cliente.getCellphone();
-            CampoResultado.setText(CampoResultado.getText() + "\n" + info);
-            pointer = pointer.getNext();
-            contador++;}
+                Client cliente = (Client) pointer.getElement();
+                String info = contador+1 + ".     Nombre y apellido: " + cliente.getFull_name() + ". Número de habitación: " + cliente.getRoomNum() + ". Correo: " + cliente.getEmail() + ". Telf.: " + cliente.getCellphone();
+                CampoResultado.setText(CampoResultado.getText() + info + "\n");
+                pointer = pointer.getNext();
+                contador++;
+            }
             maxOpcion = contador;
-            
-
         } else {
             Messages.information("No se encontraron clientes con este nombre y apellido.");
         }

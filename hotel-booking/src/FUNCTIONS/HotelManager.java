@@ -36,16 +36,23 @@ public class HotelManager {
         ListaDoble match = clientsTable.search(key); 
         NodoDoble pointer = match.getHead(); 
         int aux = 0; 
+        ListaDoble clone  = new ListaDoble(); 
+        while (pointer!= null){
+            clone.insertFinal(pointer.getElement());
+             pointer = pointer.getNext();
+        }
+        pointer = clone.getHead();
         while (pointer!= null){
             String nombre = ((Client)pointer.getElement()).getF_name(); 
             String apellido = ((Client)pointer.getElement()).getL_name(); 
+            pointer = pointer.getNext();     
             if (!nombre.equalsIgnoreCase(f_name) || !apellido.equalsIgnoreCase(l_name)) {
-                match.deleteInIndex(aux); 
-            }
-            aux++; 
-            pointer = pointer.getNext();      
+                clone.deleteInIndex(aux); 
+            } else {
+                aux++; 
+            } 
         }
-      return match;  
+      return clone;  
     }
     
     public Reservation searchReservation (int id) {
@@ -110,7 +117,8 @@ public class HotelManager {
         //Escogemos la fecha de hoy; 
         LocalDate currentDate = LocalDate.now(); 
         String currentDateString = currentDate.toString(); 
-        String final_date = currentDateString.replace("-", "/"); 
+        String [] pre = currentDateString.split("-"); 
+        String final_date = pre[2] + "/" + pre[1] + "/" + pre[0]; 
         
         
         int numRoom = client.getRoomNum(); 
