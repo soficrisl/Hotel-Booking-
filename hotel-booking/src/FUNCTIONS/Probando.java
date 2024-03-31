@@ -17,6 +17,7 @@ import OBJECTS.Room;
  *
  * @author Sofia
  */
+/*
 public class Probando {
     
    public static void main (String[] args){
@@ -85,6 +86,7 @@ public class Probando {
         System.out.println("\n\n");
         x(roomTree.getRoot()); 
       */
+/*
         System.out.println("----------------------CHECK-OUT-----------------------");
         System.out.println("Base de datos de clientes\n");
         printwData(table); 
@@ -166,3 +168,4 @@ public class Probando {
     }
          
 }
+*/

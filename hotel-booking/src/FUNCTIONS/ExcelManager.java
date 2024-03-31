@@ -182,13 +182,13 @@ public class ExcelManager {
                                 String fecha_llegada = datos[6];
                                 ultima_hab = num_hab;
                                 
-                                System.out.println(nombre_est);
+                                //System.out.println(nombre_est);
 //                                System.out.println(apellido_est);
 //                                System.out.println(email_est);
 //                                System.out.println(sexo_est);
 //                                System.out.println(telf_est);
 //                                System.out.println(fecha_llegada);
-                                System.out.println(num_hab);
+                                //System.out.println(num_hab);
 //                                
                                 //HotelCard card = new HotelCard(num_hab_hist, fecha_llegada_hist, null, 1);
                                 //Client cliente = new Cliente(cedula_est, nombre_est, apellido_est, email_est, sexo_est, 0, card);
@@ -216,8 +216,8 @@ public class ExcelManager {
                                     //table.Agregar(cliente);S
 //                                  
 
-                                    System.out.println(nombre_est);
-                                    System.out.println(hab);
+                                    //System.out.println(nombre_est);
+                                    //System.out.println(hab);
 //                                    System.out.println(apellido_est);
 //                                    System.out.println(email_est);
 //                                    System.out.println(sexo_est);

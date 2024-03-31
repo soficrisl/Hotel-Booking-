@@ -5,7 +5,7 @@
 package OBJECTS;
 
 /**
- *
+ * clase que define la clase reservacion del hotel 
  * @author cristiandresgp
  */
 public class Reservation {

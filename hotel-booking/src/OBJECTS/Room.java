@@ -8,7 +8,7 @@ import EDD.ListaDoble;
 import EDD.NodoDoble;
 
 /**
- *
+ * clase que define la clase habitacion del hotel 
  * @author cristiandresgp
  */
 public class Room {

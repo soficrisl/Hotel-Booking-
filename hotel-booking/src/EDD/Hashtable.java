@@ -5,12 +5,13 @@
 package EDD;
 
 /**
- *
+ *Clase que define a la estructura de datos de un Hashtable
  * @author Sofia
  */
 public class Hashtable {
+    //Atributos
     private ListaDoble[] hastable; 
-    
+    //Constructor
     public Hashtable() {
         this.hastable = new ListaDoble[1259];
         for (int i = 0; i < this.hastable.length; i++) {
@@ -18,6 +19,7 @@ public class Hashtable {
         }
  
     }
+    //Getters y Setters
     public ListaDoble[] getHastable() {
         return hastable;
     }
@@ -43,12 +45,12 @@ public class Hashtable {
         return (index <0) ? index * -1: index; 
         
     }
-    
+    //Method for inserting an object
     public void insert(String str, Object element) {
         int index = hashFunction(str);
         this.hastable[index].insertBegin(element);
     }
-    
+    //Method for deleting an object
     public void delete(String str, Object element){
         int index1 = hashFunction(str);
         if (this.hastable[index1].getHead() != null){
@@ -57,12 +59,12 @@ public class Hashtable {
            
         }
     }
-    
+    //O(1) Complexity method for searching for an object by its key
     public ListaDoble search(String str) {
         int index1 = hashFunction(str);
         return this.hastable[index1]; 
     }
-    
+    // Method for printing the hashtable. 
     public void print (){
         for (int i = 0; i < this.hastable.length; i++) {
             System.out.println("["+ i + "]"+ this.hastable[i].printString());
