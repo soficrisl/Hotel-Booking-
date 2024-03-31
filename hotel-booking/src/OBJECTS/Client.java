@@ -5,7 +5,7 @@
 package OBJECTS;
 
 /**
- *
+ * Clase que define la clase cliente del hotel 
  * @author cristiandresgp
  */
 public class Client {

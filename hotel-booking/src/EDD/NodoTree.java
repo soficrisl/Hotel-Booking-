@@ -5,24 +5,28 @@
 package EDD;
 
 /**
- *
+ *Clase que define el Nodo para un arbol binario 
  * @author Sofia
  */
 
 
 public class NodoTree {
+    //Atributos de la clase
     private Object element; 
     private int height; 
     private int key; 
     private NodoTree rightson, leftson; 
-
+    //Constructor
     public NodoTree(Object element, int key) {
         this.element = element;
         this.height = 1; 
         this.key = key;
         this.rightson = this.leftson = null;
-    }
-
+    }//Final del constructor
+    
+    /**
+     * Serie de getters y setters de los atributos 
+     */
     public Object getElement() {
         return element;
     }
@@ -50,18 +54,28 @@ public class NodoTree {
     public NodoTree getLeftSon() {
         return leftson;
     }
-
+    
     public void setLeftSon(NodoTree leftson) {
         this.leftson = leftson;
     }
-    
+    /**
+     * Boolean method to know if a node is a leaf in the tree. 
+     * @return true if leaf. 
+     */
     public boolean isLeaf(){        
         return this.leftson == null && this.rightson == null; 
     }
-    
+    /**
+     * Boolean methods to know if a node only has one son
+     * @return true if only have left son
+     */
     public boolean onlyLeftSon(){
         return this.rightson == null; 
     }
+    /**
+     * Boolean methods to know if a node only has one son
+     * @return true if only have right son
+     */
     
     public boolean onlyRightSon(){
         return this.leftson == null; 

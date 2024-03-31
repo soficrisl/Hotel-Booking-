@@ -5,16 +5,18 @@
 package EDD;
 
 /**
- *
+ *Class that defines a Binary Search Tree with AVL balancing
  * @author Sofia
  */
 public class SBT {
+    //Atributos
     private NodoTree root; 
-
+    //Constructor
     public SBT() {
         this.root = root;
-    }
-
+    } //Fin del constructor
+    
+    //Serie de getters y setters de los atributos
     public NodoTree getRoot() {
         return root;
     }
@@ -23,11 +25,19 @@ public class SBT {
         this.root = root;
     }
     
+    /**
+     * Method that returns if the tree is empty
+     * @return true if empty
+     */
     public boolean isEmpty(){ 
         return root == null;  
         
     }
-    
+    /**
+     * Method to get the minimun element of the tree by its key
+     * @param nodo
+     * @return nodo 
+     */  
     public NodoTree getMin(NodoTree nodo){
         if (isEmpty()){
             return null; 
@@ -37,7 +47,11 @@ public class SBT {
         }
         return nodo; 
     }
-    
+    /**
+     * Method to get the maximum element of the tree by its key
+     * @param nodo
+     * @return nodo 
+     */
      public NodoTree getMax(NodoTree nodo){
         if (isEmpty()){
             return null; 
@@ -48,6 +62,11 @@ public class SBT {
         return nodo; 
     }
      
+    /**
+     * Method to get the maximum element of the tree by its key, and delete it 
+     * @param nodo
+     * @return nodo deleted
+     */  
     public NodoTree getMaxandDelete(NodoTree nodo){
         if (isEmpty()){
             return null; 
@@ -64,11 +83,22 @@ public class SBT {
         }
     }
     
+    /**
+     * Inicial method to insert an element to the tree, it calls the recursive method to make things more organized for user
+     * @param element
+     * @param key 
+     */ 
     public void insert(Object element, int key){
         NodoTree nodo = new NodoTree(element, key);
         setRoot(insert(nodo, getRoot())); 
     }
     
+    /**
+     * Recursive method to insert an element to the tree, and balance it 
+     * @param newnodo
+     * @param root
+     * @return root of the tree
+     */
     public NodoTree insert(NodoTree newnodo, NodoTree root) {
         if (root == null){
             return newnodo; 
@@ -83,10 +113,21 @@ public class SBT {
         return rotation(root); 
     }
     
+    /**
+     * Inicial method to delete an element to the tree, it calls the recursive method to make things more organized for user
+     * @param element
+     * @param key 
+     */
     public void delete(int key) {
         setRoot(delete(key, getRoot()));
     }
     
+    /**
+     * Recursive method to delete an element to the tree, and balance it 
+     * @param newnodo
+     * @param root
+     * @return root of the tree
+     */
     public NodoTree delete(int key, NodoTree nodo){
         if (nodo == null) {
             return null; 
@@ -115,15 +156,29 @@ public class SBT {
         return rotation(nodo); 
     }
     
+    /**
+     * Method to get the height of a node, with validations.
+     * @param nodo
+     * @return int, height of the node in the tree
+     */
     public int height(NodoTree nodo){
         return nodo!= null ? nodo.getHeight() :0; 
     }
     
+    /**
+     * Method to uptade the height of a node
+     * @param nodo 
+     */
     public void uptadeHeight (NodoTree nodo){
         int maxHeight = Math.max(height(nodo.getLeftSon()), height(nodo.getRightSon()));
         nodo.setHeight(maxHeight + 1);
     }
     
+    /**
+     * Inicial method of rotation, with all possible cases
+     * @param nodo
+     * @return root of the tree
+     */
     public NodoTree rotation (NodoTree nodo) {
         int bf = balanceFactor(nodo); 
         //Case 1: left heavy
@@ -143,11 +198,21 @@ public class SBT {
         return nodo; 
     }
     
+    /**
+     * Method to calculate the balance factor of a node
+     * @param nodo
+     * @return int, balance factor
+     */
     public int balanceFactor (NodoTree nodo){
         return nodo != null ? height(nodo.getLeftSon()) - height(nodo.getRightSon()) : 0; 
         
     }
-    
+  
+    /**
+     * Method to rotate a node right
+     * @param nodo
+     * @return root node after rotation; 
+     */
     public NodoTree rotateRight(NodoTree nodo){
         NodoTree left = nodo.getLeftSon(); 
         NodoTree leftright = left.getRightSon();
@@ -158,6 +223,11 @@ public class SBT {
         return left; 
     }
     
+    /**
+     * Method to rotate a node left
+     * @param nodo
+     * @return root node after rotation; 
+     */ 
     public NodoTree rotateLeft (NodoTree nodo){
         NodoTree right = nodo.getRightSon(); 
         NodoTree rightleft = right.getLeftSon();
@@ -167,7 +237,13 @@ public class SBT {
         uptadeHeight (right); 
         return right; 
     }
-        
+    
+    /**
+     * Binary Search of an object in the tree, by its key
+     * @param key
+     * @param root
+     * @return object that is being looked for
+     */
     public Object search (int key, NodoTree root){
         if (root == null) {
             return null; 
@@ -181,7 +257,10 @@ public class SBT {
         }
     }
     
-    
+ /**
+  * Trasversal, recursive methos to print the tree in preorder, postorder and inorder
+  * @param root 
+  */   
     
     public void preOrder(NodoTree root){
         if (root!= null){
@@ -208,7 +287,12 @@ public class SBT {
         }
     }
     
-    
+ /**
+  * Method to set the node of a tree with a new element
+  * @param key
+  * @param element
+  * @return object modified
+  */   
     public Object setNodoElement (int key, Object element){
         if (root == null) {
             return null; 
