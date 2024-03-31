@@ -110,8 +110,8 @@ public class Client {
     }
     
     public String show(){
-        if (id != -1) return "ID: " + id + ". Nombre: y apellido: " + f_name +  " " + l_name +  ". Correo: " + email +  ". Género: " + gender + ". Nro de habitación: " + roomNum + ". Telf.: " + cellphone +  ". Llegada: " + arrival +  ". Salida: " + departure; 
-        return "ID: No hay ID disponible" + ". Nombre: y apellido: " + f_name +  " " + l_name +  ". Correo: " + email +  ". Género: " + gender + ". Nro de habitación: " + roomNum + ". Telf.: " + cellphone +  ". Llegada: " + arrival +  ". Salida: " + departure; 
+        if (id != -1) return "ID: " + id + ". Nombre: y apellido: " + full_name +  ". Correo: " + email +  ". Género: " + gender + ". Nro de habitación: " + roomNum + ". Telf.: " + cellphone +  ". Llegada: " + arrival +  ". Salida: " + departure; 
+        return "ID: No hay ID disponible" + ". Nombre: y apellido: " + full_name + ". Correo: " + email +  ". Género: " + gender + ". Nro de habitación: " + roomNum + ". Telf.: " + cellphone +  ". Llegada: " + arrival +  ". Salida: " + departure; 
     }
 
     public String getFull_name() {

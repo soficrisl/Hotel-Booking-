@@ -508,7 +508,7 @@ public class CheckOutGUI extends javax.swing.JFrame {
         listaClientes = manager.searchClient(nombre, apellido);
 
         // Verificar si se encontraron resultados
-        if (listaClientes != null) {
+        if (listaClientes.getHead() != null) {
             Messages.information("Se han encontrado los datos exitosamente! Por favor introduce en el campo de opción el número del cliente correspondiente.");
             NodoDoble pointer = listaClientes.getHead();
             int contador = 0;
