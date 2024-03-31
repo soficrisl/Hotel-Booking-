@@ -46,6 +46,7 @@ public class CheckInGUI extends javax.swing.JFrame {
         this.setResizable(false);
         this.back.setVisible(true);
         this.habitacion.setVisible(false);
+        this.welcome.setVisible(false);
     }
     
     //Desde CheckOutGUI
@@ -59,6 +60,7 @@ public class CheckInGUI extends javax.swing.JFrame {
         this.setResizable(false);
         this.back.setVisible(true);
         this.habitacion.setVisible(false);
+        this.welcome.setVisible(false);
     }
     
     //Desde BusquedaResGUI
@@ -72,6 +74,7 @@ public class CheckInGUI extends javax.swing.JFrame {
         this.setResizable(false);
         this.back.setVisible(true);
         this.habitacion.setVisible(false);
+        this.welcome.setVisible(false);
     }
     
     //Desde BusquedaGUI
@@ -85,6 +88,7 @@ public class CheckInGUI extends javax.swing.JFrame {
         this.setResizable(false);
         this.back.setVisible(true);
         this.habitacion.setVisible(false);
+        this.welcome.setVisible(false);
     }
     
     //Desde GUIinicial
@@ -99,6 +103,7 @@ public class CheckInGUI extends javax.swing.JFrame {
         this.setResizable(false);
         this.back.setVisible(true);
         this.habitacion.setVisible(false);
+        this.welcome.setVisible(false);
     }
     
     public CheckInGUI() {
@@ -109,6 +114,7 @@ public class CheckInGUI extends javax.swing.JFrame {
         this.setResizable(false);
         this.back.setVisible(true);
         this.habitacion.setVisible(false);
+        this.welcome.setVisible(false);
     }
 
     /**
@@ -143,6 +149,7 @@ public class CheckInGUI extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         back = new javax.swing.JLabel();
         habitacion = new javax.swing.JLabel();
+        welcome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -360,11 +367,16 @@ public class CheckInGUI extends javax.swing.JFrame {
         back.setFont(new java.awt.Font("Malgun Gothic Semilight", 1, 18)); // NOI18N
         back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/IMG_6048 (2).jpg"))); // NOI18N
         back.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 102), 7));
-        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 620, 140));
+        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 620, 130));
 
         habitacion.setFont(new java.awt.Font("Malgun Gothic", 2, 16)); // NOI18N
         habitacion.setText("-");
         getContentPane().add(habitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, 260, -1));
+
+        welcome.setFont(new java.awt.Font("Malgun Gothic Semilight", 1, 14)); // NOI18N
+        welcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        welcome.setText("jLabel1");
+        getContentPane().add(welcome, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 400, 280, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -416,6 +428,7 @@ public class CheckInGUI extends javax.swing.JFrame {
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         this.back.setVisible(true);
         this.habitacion.setVisible(false);
+        this.welcome.setVisible(false);
         String cedulaString = CampoCedula.getText().toString();
 
         if (CampoCedula.getText().trim().isEmpty()) {
@@ -441,9 +454,9 @@ public class CheckInGUI extends javax.swing.JFrame {
                     while (pointer != null){
                         Client aux = (Client) pointer.getElement();
                         if (aux.getId()==cedula){
-                            back.setText("¡Bienvenido " + aux.getFull_name() + "!");
+                            welcome.setText("¡Bienvenido " + aux.getFull_name() + "!");
                             habitacion.setText("Numero de su habitación: " + aux.getRoomNum());
-                            this.back.setVisible(true);
+                            this.welcome.setVisible(true);
                             this.habitacion.setVisible(true);
                         }
                         pointer=pointer.getNext();
@@ -517,5 +530,6 @@ public class CheckInGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JLabel welcome;
     // End of variables declaration//GEN-END:variables
 }

@@ -466,11 +466,15 @@ public class HistorialGUI extends javax.swing.JFrame {
                 Messages.information("No hay historial de clientes en esta habitación.");
             }
             else {
-            while (pointer != null){
-            Client cliente = (Client) pointer.getElement();
-            String info = cliente.show();
-            CampoResultado.setText(CampoResultado.getText() + "\n" + info);
-            pointer = pointer.getNext();}}
+                int aux = 1; 
+                while (pointer != null){
+                    Client cliente = (Client) pointer.getElement();
+                    String info = cliente.show();
+                    CampoResultado.setText(CampoResultado.getText() + aux + "-. " + info + "\n" );
+                    pointer = pointer.getNext();
+                    aux++; 
+                }
+            }
             
         } else {
             Messages.information("No hay habitaciones asignadas al número proporcionado.");
