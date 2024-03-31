@@ -428,6 +428,7 @@ public class CheckInGUI extends javax.swing.JFrame {
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         this.back.setVisible(true);
         this.habitacion.setVisible(false);
+        this.welcome.setVisible(false);
         String cedulaString = CampoCedula.getText().toString();
 
         if (CampoCedula.getText().trim().isEmpty()) {
