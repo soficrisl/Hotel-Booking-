@@ -48,8 +48,10 @@ public class Reservation {
     }
     
     public String show(){
-        return "ID: " + clientID + ". Nombre y apellido: " + leadClient.getFull_name() +  ". Tipo de habitación: "+ roomType + ". Email: " + leadClient.getEmail() + ". Genero: " + leadClient.getGender() + ". Telefono:" + leadClient.getCellphone() + ". Llegada:" + leadClient.getArrival() + ". Salida: " + leadClient.getDeparture(); 
+        if (clientID != -1) {
+            return " ID: " + clientID + ".\n Nombre y apellido: " + leadClient.getFull_name() +  ".\n Tipo de habitación: "+ roomType + ".\n Email: " + leadClient.getEmail() + ".\n Genero: " + leadClient.getGender() + ".\n Telefono:" + leadClient.getCellphone() + ".\n Llegada:" + leadClient.getArrival() + ".\n Salida: " + leadClient.getDeparture(); 
+        }
+        return " ID: No hay ID disponible" + ".\n Nombre y apellido: " + leadClient.getFull_name() +  ".\n Tipo de habitación: "+ roomType + ".\n Email: " + leadClient.getEmail() + ".\n Genero: " + leadClient.getGender() + ".\n Telefono:" + leadClient.getCellphone() + ".\n Llegada:" + leadClient.getArrival() + ".\n Salida: " + leadClient.getDeparture(); 
+
     }
-   
-   
 }

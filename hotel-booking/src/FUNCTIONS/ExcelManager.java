@@ -224,8 +224,7 @@ public class ExcelManager {
 //                                    System.out.println(telf_est);
 //                                    
 
-                                    String fecha_llegada = datos[6];
-                                    int hab = ultima_hab;                               
+                                    String fecha_llegada = datos[6];                            
                                     Client client = new Client (-1, nombre_est, apellido_est, email_est, sexo_est,hab, telf_est, fecha_llegada, "", datos[1] + " "+ datos[2]); 
                                     String key = nombre_est +" "+ apellido_est; 
                                     //System.out.println(key);
