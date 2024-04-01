@@ -13,7 +13,7 @@ public class FuncionesGenerales {
     public static boolean contieneSoloLetras(String cadena) {
         for (int i = 0; i < cadena.length(); i++) {
             char c = cadena.charAt(i);
-            if (!Character.isLetter(c) && !Character.isWhitespace(c) && c != '\'') {
+            if (!Character.isLetter(c) && !Character.isWhitespace(c) && c != '\'' && c != '-') {
                 return false;
             }
            
